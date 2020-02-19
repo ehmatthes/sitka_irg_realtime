@@ -11,3 +11,8 @@ def index(request):
 def simple_irg_plot(request):
     """Simple plot of the river gauge."""
     return render(request, 'irg_viz/simple_irg_plot.html')
+
+@login_required
+def irg_cone_plot(request):
+    """Cone plot, like a hurricane path forecast."""
+    return render(request, 'irg_viz/irg_cone_plot.html')
