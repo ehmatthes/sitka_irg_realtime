@@ -115,6 +115,8 @@ def plot_current_data_cone(readings, critical_points=[], known_slides=[],
 
     # Build a set of future readings, once every 15 minutes for the next
     #   6 hours.
+    # DEV: May want to only look ahead 4.5 hrs; looking farther ahead
+    #   than the critical 5-hour period seems less meaningful.
     # DEV: Doing some imports here, because this will be moved to 
     #   analysis_utils
     import datetime
