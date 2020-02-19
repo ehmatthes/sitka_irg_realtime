@@ -35,6 +35,9 @@ INSTALLED_APPS = [
     'irg_viz',
     'users',
 
+    # Third party apps.
+    'bootstrap4',
+
     # Default apps.
     'django.contrib.admin',
     'django.contrib.auth',

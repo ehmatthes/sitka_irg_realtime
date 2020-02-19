@@ -1,4 +1,4 @@
-{% extends "learning_logs/base.html" %}
+{% extends "irg_viz/base.html" %}
 
 {% load bootstrap4 %}
 
@@ -16,7 +16,7 @@
     {% endbuttons %}
     
     <input type="hidden" name="next" 
-      value="{% url 'learning_logs:index' %}" />
+      value="{% url 'irg_viz:index' %}" />
   </form>
     
 {% endblock content %}
