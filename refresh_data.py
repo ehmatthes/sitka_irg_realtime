@@ -6,7 +6,7 @@ updated data.
 import utils.analysis_utils as a_utils
 from utils import plot_utils
 
-current_data = a_utils.fetch_current_data(fresh=False)
+current_data = a_utils.fetch_current_data(fresh=True)
 
 readings = a_utils.process_xml_data(current_data)
 

@@ -33,7 +33,7 @@ def plot_current_data_html(readings, critical_points=[], known_slides=[],
     y_min, y_max = 20.0, 27.5
 
     # Set date string for chart title.
-    dt_title = readings[0].dt_reading.astimezone(aktz)
+    dt_title = readings[-1].dt_reading.astimezone(aktz)
     title_date_str = dt_title.strftime('%m/%d/%Y')
 
     # Set filename.
@@ -89,4 +89,7 @@ def plot_current_data_html(readings, critical_points=[], known_slides=[],
     if not filename:
         filename = f"ir_plot_{readings[-1].dt_reading.__str__()[:10]}.html"
     filename = 'plot_files/simple_irg_plot_current.html'
+    offline.plot(fig, filename=filename, auto_open=False)
+
+    filename = 'irg_viz/templates/irg_viz/simple_irg_plot_current.html'
     offline.plot(fig, filename=filename, auto_open=False)
