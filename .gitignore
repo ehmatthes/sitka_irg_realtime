@@ -1,5 +1,8 @@
 rt_env/
 __pycache__/
+
 *.sqlite3
+
+notes.txt
 
 .DS_Store
