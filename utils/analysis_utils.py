@@ -52,7 +52,7 @@ def process_xml_data(data):
     """Processes xml data from text file.
     Returns a list of readings.
     """
-    print("  Processing raw data...")
+
     # Parse xml tree from file.
     root = ET.fromstring(data)
     tree = ET.ElementTree(root)
@@ -75,7 +75,6 @@ def process_xml_data(data):
     #      input file format.
     readings.reverse()
 
-    print(f"    Found {len(readings)} readings.")
     return readings
 
 
@@ -85,7 +84,6 @@ def get_critical_points(readings):
     over a minimum rise. Once a point is considered critical, there are no
     more critical points for the next 6 hours.
     """
-    print("  Looking for critical points...")
 
     # What's the longest it could take to reach critical?
     #   RISE_CRITICAL / M_CRITICAL
@@ -109,7 +107,6 @@ def get_critical_points(readings):
                 critical_points.append(reading)
                 break
 
-    print(f"    Found {len(critical_points)} critical points.")
     return critical_points
 
 
@@ -129,14 +126,12 @@ def get_recent_readings(readings, hours_lookback):
     """From a set of readings, return only the most recent x hours
     of readings.
     """
-    print(f"  Getting most recent {hours_lookback} hours of readings...")
     last_reading = readings[-1]
     td_lookback = datetime.timedelta(hours=hours_lookback)
     dt_first_reading = last_reading.dt_reading - td_lookback
     recent_readings = [r for r in readings
                             if r.dt_reading >= dt_first_reading]
 
-    print(f"    Found {len(recent_readings)} recent readings.")
     return recent_readings
 
 
@@ -145,7 +140,6 @@ def get_first_critical_points(readings):
     each potentially critical event.
     Return this set of readings.
     """
-    print("\nLooking for first critical points...")
 
     # What's the longest it could take to reach critical?
     #   RISE_CRITICAL / M_CRITICAL

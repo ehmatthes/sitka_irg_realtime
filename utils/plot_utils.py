@@ -17,9 +17,6 @@ def plot_current_data_html(readings, critical_points=[], known_slides=[],
     """
     # DEV: This fn should receive any relevant slides, it shouldn't do any
     #   data processing.
-    print("  Plotting current data...")
-    if critical_points:
-        print(f"First critical point: {critical_points[0].get_formatted_reading()}")
 
     # Plotly considers everything UTC. Send it strings, and it will
     #  plot the dates as they read.
@@ -87,5 +84,9 @@ def plot_current_data_html(readings, critical_points=[], known_slides=[],
     }
 
     fig = {'data': data, 'layout': my_layout}
-    offline.plot(fig, filename=filename)
-    print("    Plotted data.")
+
+    # Set filename.
+    if not filename:
+        filename = f"ir_plot_{readings[-1].dt_reading.__str__()[:10]}.html"
+    filename = 'plot_files/simple_irg_plot_current.html'
+    offline.plot(fig, filename=filename, auto_open=False)
