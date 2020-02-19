@@ -148,8 +148,8 @@ def plot_current_data_cone(readings, critical_points=[], known_slides=[],
         new_reading = IRReading(reading.dt_reading, critical_height)
         min_cf_readings.append(new_reading)
 
-    min_crit_datetimes = [str(r.dt_reading.astimezone(aktz)) for r in min_cf_readings]
-    min_crit_heights = [r.height for r in min_cf_readings]    
+    min_cf_datetimes = [str(r.dt_reading.astimezone(aktz)) for r in min_cf_readings]
+    min_cf_heights = [r.height for r in min_cf_readings]    
 
 
 
@@ -199,9 +199,19 @@ def plot_current_data_cone(readings, critical_points=[], known_slides=[],
     data.append(
         {
             'type': 'scatter',
-            'x': min_crit_datetimes,
-            'y': min_crit_heights,
+            'x': min_cf_datetimes,
+            'y': min_cf_heights,
             'marker': {'color': 'red'}
+        }
+    )
+    # Shade above future critical readings.
+    data.append(
+        {
+            'type': 'scatter',
+            'x': min_cf_datetimes,
+            'y': [27.0 for dt in min_cf_datetimes],
+            'marker': {'color': 'red'},
+            'fill': 'tonexty',
         }
     )
 
