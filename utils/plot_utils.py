@@ -130,6 +130,33 @@ def plot_current_data_cone(readings, critical_points=[], known_slides=[],
     future_datetimes = [str(r.dt_reading.astimezone(aktz)) for r in future_readings]
     future_heights = [r.height for r in future_readings]
 
+    # What are the future critical points?
+    #   These are the heights that would result in 5-hour total rise and 
+    #     average rate matching critical values.
+    #   These are the minimum values needed to become, or remain, critical.
+    # DEV: NEEDS take into account rate
+    min_cf_readings = []
+    latest_reading = readings[-1]
+    print('latest reading:', latest_reading.dt_reading.isoformat())
+    print('latest reading akst:', latest_reading.dt_reading.astimezone(aktz).isoformat())
+    print()
+    for reading in future_readings:
+        dt_lookback = reading.dt_reading - datetime.timedelta(hours=5)
+        print('dt lookback akst:', dt_lookback.astimezone(aktz).isoformat())
+        print(latest_reading.dt_reading > dt_lookback)
+        # Get minimum height from last 5 hours of readings, including future readings.
+        # print(reading.dt_reading - datetime.timedelta(hours=5))
+        relevant_readings = [r for r in readings
+            if r.dt_reading >= dt_lookback]
+        relevant_readings += min_cf_readings
+        critical_height = min([r.height for r in relevant_readings]) + 2.5
+        new_reading = IRReading(reading.dt_reading, critical_height)
+        min_cf_readings.append(new_reading)
+
+    min_crit_datetimes = [str(r.dt_reading.astimezone(aktz)) for r in min_cf_readings]
+    min_crit_heights = [r.height for r in min_cf_readings]    
+
+
 
     # Want current data to be plotted with a consistent scale on the y axis.
     y_min, y_max = 20.0, 27.5
@@ -173,13 +200,13 @@ def plot_current_data_cone(readings, critical_points=[], known_slides=[],
                 'textposition': 'middle left'
             }
         )
-    # Plot future readings.
+    # Plot minimum future critical readings.
     data.append(
         {
             'type': 'scatter',
-            'x': future_datetimes,
-            'y': future_heights,
-            'marker': {'color': 'green'}
+            'x': min_crit_datetimes,
+            'y': min_crit_heights,
+            'marker': {'color': 'red'}
         }
     )
 
