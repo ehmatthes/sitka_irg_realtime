@@ -6,3 +6,4 @@ updated data.
 import utils.analysis_utils as a_utils
 
 current_data = a_utils.fetch_current_data(fresh=False)
+

@@ -2,9 +2,18 @@
 
 {% block page_header %}
   <div class="jumbotron">
-    <h1 class="display-3">IRG viz</h1>
+    <h1 class="display-3">Indian River Visualizations</h1>
 
-    <p class="lead">blah</p>
+    {% if user.is_authenticated %}
+      <p class="lead">This site demonstrates a number of ways to visualize data
+        from the Indian River stream gauge, with the goal of helping to assess
+        the risk of imminent landslides.
+      </p>
+    {% else %}
+      <p class="lead">This is an experimental project; you must be logged in
+        to see anything.
+      </p>
+    {% endif %}
 
   </div>
 {% endblock page_header %}

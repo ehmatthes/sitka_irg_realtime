@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1,
     shrink-to-fit=no">
-  <title>IRG viz</title>
+  <title>Indian River Visualizations</title>
 
   {% bootstrap_css %}
   {% bootstrap_javascript jquery='full' %}
@@ -17,7 +17,7 @@
   <nav class="navbar navbar-expand-md navbar-light bg-light mb-4 border">
 
     <a class="navbar-brand" href="{% url 'irg_viz:index'%}">
-        IRG viz</a>
+        Indian River Visualizations</a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse"
         data-target="#navbarCollapse" aria-controls="navbarCollapse"
@@ -26,8 +26,7 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'irg_viz:index'%}">
-              blah</a></li>
+          <a class="nav-link" href="{% url 'irg_viz:index'%}"></a></li>
       </ul>
       <ul class="navbar-nav ml-auto">
         {% if user.is_authenticated %}
