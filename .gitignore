@@ -4,5 +4,6 @@ __pycache__/
 *.sqlite3
 
 notes.txt
+screenshots/
 
 .DS_Store

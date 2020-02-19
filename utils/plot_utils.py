@@ -134,7 +134,7 @@ def plot_current_data_cone(readings, critical_points=[], known_slides=[],
     #   These are the heights that would result in 5-hour total rise and 
     #     average rate matching critical values.
     #   These are the minimum values needed to become, or remain, critical.
-    # DEV: NEEDS take into account rate
+    # DEV: Replace all 0.5 and 2.5 with M_CRITICAL and CRITICAL_RISE
     min_cf_readings = []
     latest_reading = readings[-1]
     for reading in future_readings:
@@ -149,23 +149,17 @@ def plot_current_data_cone(readings, critical_points=[], known_slides=[],
         # Make sure critical_height also gives a 5-hour average rise at least
         #   as great as M_CRITICAL. Units are ft/hr.
         m_avg = (critical_height - relevant_readings[0].height) / 5
-        print('m_avg:', m_avg)
         if m_avg < 0.5:
             # The critical height satisfies total rise, but not sustained rate
             #   of rise. Bump critical height so it satisfies total rise and
             #   rate of rise.
-            print('old ch:', critical_height)
             critical_height = 5 * 0.5 + relevant_readings[0].height
-            print('new ch:', critical_height)
-            print('new m:', (critical_height-relevant_readings[0].height)/5)
 
         new_reading = IRReading(reading.dt_reading, critical_height)
         min_cf_readings.append(new_reading)
 
     min_cf_datetimes = [str(r.dt_reading.astimezone(aktz)) for r in min_cf_readings]
     min_cf_heights = [r.height for r in min_cf_readings]    
-
-
 
     # Want current data to be plotted with a consistent scale on the y axis.
     y_min, y_max = 20.0, 27.5
