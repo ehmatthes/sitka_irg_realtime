@@ -137,13 +137,8 @@ def plot_current_data_cone(readings, critical_points=[], known_slides=[],
     # DEV: NEEDS take into account rate
     min_cf_readings = []
     latest_reading = readings[-1]
-    print('latest reading:', latest_reading.dt_reading.isoformat())
-    print('latest reading akst:', latest_reading.dt_reading.astimezone(aktz).isoformat())
-    print()
     for reading in future_readings:
         dt_lookback = reading.dt_reading - datetime.timedelta(hours=5)
-        print('dt lookback akst:', dt_lookback.astimezone(aktz).isoformat())
-        print(latest_reading.dt_reading > dt_lookback)
         # Get minimum height from last 5 hours of readings, including future readings.
         # print(reading.dt_reading - datetime.timedelta(hours=5))
         relevant_readings = [r for r in readings
