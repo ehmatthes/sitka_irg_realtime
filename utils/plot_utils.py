@@ -85,16 +85,16 @@ def plot_current_data_html(readings, critical_points=[], known_slides=[],
 
     fig = {'data': data, 'layout': my_layout}
 
-    # Set filename.
-    if not filename:
-        filename = f"ir_plot_{readings[-1].dt_reading.__str__()[:10]}.html"
-    filename = 'plot_files/simple_irg_plot_current.html'
+    # # Set filename.
+    # if not filename:
+    #     filename = f"ir_plot_{readings[-1].dt_reading.__str__()[:10]}.html"
+    # filename = 'plot_files/simple_irg_plot_current.html'
+    # offline.plot(fig, filename=filename, auto_open=False)
+
+    filename = 'irg_viz/templates/irg_viz/plot_fragments/simple_irg_plot_current.html'
     offline.plot(fig, filename=filename, auto_open=False)
 
-    filename = 'irg_viz/templates/irg_viz/simple_irg_plot_current.html'
-    offline.plot(fig, filename=filename, auto_open=False)
-
-def plot_current_data_cone(readings, critical_points=[], known_slides=[],
+def plot_interactive_critical_forecast_html(readings, critical_points=[], known_slides=[],
         filename=None):
     """Plot IR gauge data, with critical points in red. Known slide
     events are indicated by a vertical line at the time of the event.
@@ -273,12 +273,12 @@ def plot_current_data_cone(readings, critical_points=[], known_slides=[],
 
     fig = {'data': data, 'layout': my_layout}
 
-    # Set filename.
-    if not filename:
-        filename = f"ir_plot_{readings[-1].dt_reading.__str__()[:10]}.html"
-    filename = 'plot_files/irg_cone_plot_current.html'
-    offline.plot(fig, filename=filename, auto_open=False)
+    # # Set filename.
+    # # if not filename:
+    # #     filename = f"ir_plot_{readings[-1].dt_reading.__str__()[:10]}.html"
+    # filename = 'plot_files/plot_interactive_critical_forecast.html'
+    # offline.plot(fig, filename=filename, auto_open=False)
 
-    filename = 'irg_viz/templates/irg_viz/irg_cone_plot_current.html'
+    filename = 'irg_viz/templates/irg_viz/plot_fragments/irg_critical_forecast_current.html'
     offline.plot(fig, filename=filename, auto_open=False)
 

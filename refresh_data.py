@@ -8,7 +8,7 @@ from utils import plot_utils, plot_utils_mpl
 
 
 # Fetch current data, which is xml, and convert to readings.
-current_data = a_utils.fetch_current_data(fresh=True)
+current_data = a_utils.fetch_current_data(fresh=False)
 readings = a_utils.process_xml_data(current_data)
 
 # Focus on most recent readings, not an entire week.
@@ -19,7 +19,7 @@ critical_points = a_utils.get_critical_points(recent_readings)
 plot_utils.plot_current_data_html(recent_readings)
 
 # Interactive forecast plot.
-plot_utils.plot_current_data_cone(recent_readings)
+plot_utils.plot_interactive_critical_forecast_html(recent_readings)
 
 # Static forecast plot.
 plot_utils_mpl.plot_critical_forecast_mpl(recent_readings,

@@ -195,8 +195,8 @@ def plot_critical_forecast_mpl(readings, critical_points=[],
     # plt.show()
 
     # Save to file.
-    filename = f"current_ir_plots/ir_plot_{readings[-1].dt_reading.__str__()[:10]}.png"
-    filename = "media/plot_images/irg_critical_forecast_plot.png"
+    # filename = f"current_ir_plots/ir_plot_{readings[-1].dt_reading.__str__()[:10]}.png"
+    filename = "media/plot_images/irg_critical_forecast_plot_current.png"
     plt.savefig(filename)
 
     # filename = "irg_viz/"

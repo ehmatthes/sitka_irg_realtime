@@ -23,7 +23,7 @@ critical_points = a_utils.get_critical_points(recent_readings)
 
 plot_utils.plot_current_data_html(recent_readings)
 
-plot_utils.plot_current_data_cone(recent_readings[:86])
+plot_utils.plot_interactive_critical_forecast_html(recent_readings[:86])
 
 # Plot a shortened set of points.
 num_points = 86

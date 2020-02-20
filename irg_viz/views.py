@@ -13,11 +13,11 @@ def simple_irg_plot(request):
     return render(request, 'irg_viz/simple_irg_plot.html')
 
 @login_required
-def irg_cone_plot(request):
-    """Cone plot, like a hurricane path forecast."""
-    return render(request, 'irg_viz/irg_cone_plot.html')
+def irg_critical_forecast_plot_interactive(request):
+    """Interactive critical forecast plot."""
+    return render(request, 'irg_viz/irg_critical_forecast_plot_interactive.html')
 
 @login_required
 def irg_critical_forecast_plot(request):
-    """Forecast plot, showing projections over next ~5 hours."""
+    """Static critical forecast plot."""
     return render(request, 'irg_viz/irg_critical_forecast_plot.html')
