@@ -161,7 +161,28 @@ def plot_current_data_cone(readings, critical_points=[], known_slides=[],
         min_cf_readings.append(new_reading)
 
     min_cf_datetimes = [str(r.dt_reading.astimezone(aktz)) for r in min_cf_readings]
-    min_cf_heights = [r.height for r in min_cf_readings]    
+    min_cf_heights = [r.height for r in min_cf_readings]
+
+    # Calculate 15-min trend.
+    #   Get m for last two readings. Build next 6 hrs of readings.
+    # Be careful; this slope is still in ft/hr, but it's that rate as measured
+    #   over the last 15 minutes.
+    m_15_min = readings[-1].get_slope(readings[-2])
+
+    proj_readings_15_min = []
+    interval = datetime.timedelta(minutes=15)
+    proj_dt = readings[-1].dt_reading + interval
+    # Proj height is hourly rate/4, because we're only incrementing 15 min.
+    proj_height = readings[-1].height + m_15_min/4
+    for reading in future_readings:
+        new_reading = IRReading(proj_dt, proj_height)
+        proj_readings_15_min.append(new_reading)
+        proj_dt += interval
+        proj_height += m_15_min / 4
+
+    proj_datetimes_15_min = [r.dt_reading.astimezone(aktz) for r in proj_readings_15_min]
+    proj_heights_15_min = [r.height for r in proj_readings_15_min]
+
 
     # Want current data to be plotted with a consistent scale on the y axis.
     y_min, y_max = 20.0, 27.5
@@ -179,7 +200,8 @@ def plot_current_data_cone(readings, critical_points=[], known_slides=[],
             # Non-critical gauge height data.
             'type': 'scatter',
             'x': datetimes,
-            'y': heights
+            'y': heights,
+            'name': 'current readings'
         }
     ]
     if critical_points:
@@ -211,7 +233,8 @@ def plot_current_data_cone(readings, critical_points=[], known_slides=[],
             'type': 'scatter',
             'x': min_cf_datetimes,
             'y': min_cf_heights,
-            'marker': {'color': 'red'}
+            'marker': {'color': 'red'},
+            'name': 'min critical points',
         }
     )
     # Shade above future critical readings.
@@ -222,6 +245,18 @@ def plot_current_data_cone(readings, critical_points=[], known_slides=[],
             'y': [27.0 for dt in min_cf_datetimes],
             'marker': {'color': 'red'},
             'fill': 'tonexty',
+            'name': 'critical region',
+        }
+    )
+    # Show 15-min trendline.
+    data.append(
+        {
+            'type': 'scatter',
+            'x': proj_datetimes_15_min,
+            'y': proj_heights_15_min,
+            'marker': {'color': 'blue', 'opacity': 0.5, 'size': 3},
+            'mode': 'markers',
+            'name': '15-min trend'
         }
     )
 
