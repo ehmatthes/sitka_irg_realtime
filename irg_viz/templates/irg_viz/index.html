@@ -7,11 +7,11 @@
     {% if user.is_authenticated %}
       <p class="lead">This site demonstrates a number of ways to visualize data
         from the Indian River stream gauge, with the goal of helping to assess
-        the risk of imminent landslides.
+        the risk of imminent landslides. This is an experimental project; the data you see here may be outdated or incorrect, and the interpretations of this data may be flawed.
       </p>
-      <p><a href="{% url 'irg_viz:simple_irg_plot' %}">Simple river gauge plot</a></p>
-      <p><a href="{% url 'irg_viz:irg_cone_plot' %}">Cone plot, like a hurricane track forecast</a></p>
-      <p><a href="{% url 'irg_viz:irg_critical_forecast_plot' %}">Critical forecast plot</a></p>
+      <p><a href="{% url 'irg_viz:simple_irg_plot' %}">Simple river gauge plot</a> - An interactive plot of the stream gauge readings, plotted with a consistent y-scale.</p>
+      <p><a href="{% url 'irg_viz:irg_cone_plot' %}">Interactive critical forecast plot</a> - An interactive plot showing how close the river currently is to the characteristics associated with landslides.</p>
+      <p><a href="{% url 'irg_viz:irg_critical_forecast_plot' %}">Critical forecast plot</a> - A static version (png) of the critical forecast plot, showing how close the river currently is to the characteristics associated with landslides.</p>
     {% else %}
       <p class="lead">This is an experimental project; you must be logged in
         to see anything.
