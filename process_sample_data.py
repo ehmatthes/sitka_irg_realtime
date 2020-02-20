@@ -21,9 +21,9 @@ with open(filename, 'rb') as f:
 # recent_readings = a_utils.get_recent_readings(readings, 48)
 critical_points = a_utils.get_critical_points(recent_readings)
 
-# plot_utils.plot_current_data_html(recent_readings)
+plot_utils.plot_current_data_html(recent_readings)
 
-# plot_utils.plot_current_data_cone(recent_readings[:86])
+plot_utils.plot_current_data_cone(recent_readings[:86])
 
 # Plot a shortened set of points.
 num_points = 86

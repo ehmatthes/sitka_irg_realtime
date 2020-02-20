@@ -124,7 +124,7 @@ def plot_current_data_cone(readings, critical_points=[], known_slides=[],
 
     interval = datetime.timedelta(minutes=15)
     future_readings = []
-    new_reading_dt = readings[-1].dt_reading
+    new_reading_dt = readings[-1].dt_reading + interval
     for _ in range(24):
         new_reading = IRReading(new_reading_dt, 23.0)
         future_readings.append(new_reading)
