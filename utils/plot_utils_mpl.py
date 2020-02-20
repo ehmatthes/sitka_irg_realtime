@@ -94,6 +94,9 @@ def plot_critical_forecast_mpl(readings, critical_points=[],
     plt.style.use('seaborn')
     fig, ax = plt.subplots(figsize=(10, 6), dpi=128)
 
+    # Always plot on an absolute y scale.
+    ax.set_ylim([20.0, 27.5])
+
     # Add river heights for the current set of readings.
     ax.plot(datetimes, heights, c='blue', alpha=0.8, linewidth=1)
 
@@ -105,10 +108,16 @@ def plot_critical_forecast_mpl(readings, critical_points=[],
                 s=15)
         # cp_label = critical_points[0].dt_reading.astimezone(aktz).strftime(
                 # '%m/%d/%Y %H:%M:%S')
-        label_time = critical_points[0].dt_reading.astimezone(aktz)
-        cp_label = label_time.strftime('%m/%d/%Y %H:%M:%S') + '    '
-        ax.text(label_time, critical_heights[0], cp_label,
-                horizontalalignment='right')
+        # Labeling doesn't work well on live plot.
+        # label_time = critical_points[0].dt_reading.astimezone(aktz)
+        # cp_label = label_time.strftime('%m/%d/%Y %H:%M:%S') + '    '
+        # ax.text(label_time, critical_heights[0], cp_label,
+        #         horizontalalignment='right')
+
+    # Plot minimum future critical readings.
+    ax.plot(min_cf_datetimes, min_cf_heights, c='red', alpha=0.4)
+
+
 
     # Set chart and axes titles, and other formatting.
     title = f"Indian River Gauge Readings, {title_date_str}"

@@ -19,10 +19,17 @@ with open(filename, 'rb') as f:
 # readings = a_utils.process_xml_data(current_data)
 
 # recent_readings = a_utils.get_recent_readings(readings, 48)
-# critical_points = a_utils.get_critical_points(recent_readings)
+critical_points = a_utils.get_critical_points(recent_readings)
 
-plot_utils.plot_current_data_html(recent_readings)
+# plot_utils.plot_current_data_html(recent_readings)
 
-plot_utils.plot_current_data_cone(recent_readings[:86])
+# plot_utils.plot_current_data_cone(recent_readings[:86])
 
-plot_utils_mpl.plot_critical_forecast_mpl(recent_readings[:86])
+# Plot a shortened set of points.
+num_points = 86
+if num_points:
+    recent_readings = recent_readings[:num_points]
+    critical_points = a_utils.get_critical_points(recent_readings)
+
+plot_utils_mpl.plot_critical_forecast_mpl(recent_readings,
+                                                    critical_points)
