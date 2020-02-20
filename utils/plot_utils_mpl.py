@@ -77,28 +77,6 @@ def plot_critical_forecast_mpl(readings, critical_points=[],
     min_cf_datetimes = [r.dt_reading.astimezone(aktz) for r in min_cf_readings]
     min_cf_heights = [r.height for r in min_cf_readings]
 
-    # Calculate 15-min trend.
-    #   Get m for last two readings. Build next 6 hrs of readings.
-    # Be careful; this slope is still in ft/hr, but it's that rate as measured
-    #   over the last 15 minutes.
-    m_15_min = readings[-1].get_slope(readings[-2])
-
-    proj_readings_15_min = []
-    interval = datetime.timedelta(minutes=15)
-    proj_dt = readings[-1].dt_reading + interval
-    # Proj height is hourly rate/4, because we're only incrementing 15 min.
-    proj_height = readings[-1].height + m_15_min/4
-    for reading in future_readings:
-        new_reading = IRReading(proj_dt, proj_height)
-        proj_readings_15_min.append(new_reading)
-        proj_dt += interval
-        proj_height += m_15_min / 4
-
-    proj_datetimes_15_min = [r.dt_reading.astimezone(aktz) for r in proj_readings_15_min]
-    proj_heights_15_min = [r.height for r in proj_readings_15_min]
-
-
-
     # Want current data to be plotted with a consistent scale on the y axis.
     y_min, y_max = 20.0, 27.5
 
@@ -140,10 +118,6 @@ def plot_critical_forecast_mpl(readings, critical_points=[],
     #   Plot these points, and shade to max y value.
     ax.plot(min_cf_datetimes, min_cf_heights, c='red', alpha=0.4)
     ax.fill_between(min_cf_datetimes, min_cf_heights, 27.5, color='red', alpha=0.2)
-
-    # Plot current trends.
-    ax.plot(proj_datetimes_15_min, proj_heights_15_min, c='blue', alpha=0.4,
-                linestyle='dotted')
 
     # Set chart and axes titles, and other formatting.
     title = f"Indian River Gauge Readings, {title_date_str}"
