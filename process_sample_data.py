@@ -5,7 +5,8 @@ sample data.
 import pickle
 
 import utils.analysis_utils as a_utils
-from utils import plot_utils
+from utils import plot_utils, plot_utils_mpl
+
 
 filename = 'sample_data/reading_dump_09212019.pkl'
 
@@ -23,3 +24,5 @@ with open(filename, 'rb') as f:
 plot_utils.plot_current_data_html(recent_readings)
 
 plot_utils.plot_current_data_cone(recent_readings[:86])
+
+plot_utils_mpl.plot_critical_forecast_mpl(recent_readings[:86])

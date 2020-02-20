@@ -16,12 +16,12 @@ def plot_critical_forecast_mpl(readings, critical_points=[],
     # DEV: This fn should receive any relevant slides, it shouldn't do any
     #   data processing.
 
-    # Plotly considers everything UTC. Send it strings, and it will
-    #  plot the dates as they read.
-    datetimes = [str(reading.dt_reading.astimezone(aktz)) for reading in readings]
+    # Matplotlib accepts datetimes as x values, so it should be handling
+    #   timezones appropriately.
+    datetimes = [reading.dt_reading.astimezone(aktz) for reading in readings]
     heights = [reading.height for reading in readings]
 
-    critical_datetimes = [str(reading.dt_reading.astimezone(aktz)) for reading in critical_points]
+    critical_datetimes = [reading.dt_reading.astimezone(aktz) for reading in critical_points]
     critical_heights = [reading.height for reading in critical_points]
 
     min_height = min([reading.height for reading in readings])
@@ -43,7 +43,7 @@ def plot_critical_forecast_mpl(readings, critical_points=[],
         new_reading = IRReading(new_reading_dt, 23.0)
         future_readings.append(new_reading)
         new_reading_dt += interval
-    future_datetimes = [str(r.dt_reading.astimezone(aktz)) for r in future_readings]
+    future_datetimes = [r.dt_reading.astimezone(aktz) for r in future_readings]
     future_heights = [r.height for r in future_readings]
 
     # What are the future critical points?
@@ -74,7 +74,7 @@ def plot_critical_forecast_mpl(readings, critical_points=[],
         new_reading = IRReading(reading.dt_reading, critical_height)
         min_cf_readings.append(new_reading)
 
-    min_cf_datetimes = [str(r.dt_reading.astimezone(aktz)) for r in min_cf_readings]
+    min_cf_datetimes = [r.dt_reading.astimezone(aktz) for r in min_cf_readings]
     min_cf_heights = [r.height for r in min_cf_readings]    
 
     # Want current data to be plotted with a consistent scale on the y axis.
@@ -88,75 +88,91 @@ def plot_critical_forecast_mpl(readings, critical_points=[],
     if not filename:
         filename = f"ir_plot_{readings[-1].dt_reading.__str__()[:10]}.html"
 
-    data = [
-        {
-            # Non-critical gauge height data.
-            'type': 'scatter',
-            'x': datetimes,
-            'y': heights
-        }
-    ]
+    # --- Plotting code
+
+    # Build static plot image.
+    plt.style.use('seaborn')
+    fig, ax = plt.subplots(figsize=(10, 6), dpi=128)
+
+    # Add river heights for the current set of readings.
+    ax.plot(datetimes, heights, c='blue', alpha=0.8, linewidth=1)
+
+    # Add critical points if relevant.
     if critical_points:
-        label_dt_str = critical_points[0].dt_reading.astimezone(aktz).strftime(
-                '%m/%d/%Y %H:%M:%S')
-        data.append(
-            {
-                # Critical points.
-                'type': 'scatter',
-                'x': critical_datetimes,
-                'y': critical_heights,
-                'marker': {'color': 'red'}
-            }
-        )
-        data.append(
-            {
-                # Label for first critical point.
-                'type': 'scatter',
-                'x': [critical_datetimes[0]],
-                'y': [critical_heights[0]],
-                'text': f"{label_dt_str}  ",
-                'mode': 'text',
-                'textposition': 'middle left'
-            }
-        )
-    # Plot minimum future critical readings.
-    data.append(
-        {
-            'type': 'scatter',
-            'x': min_cf_datetimes,
-            'y': min_cf_heights,
-            'marker': {'color': 'red'}
-        }
-    )
-    # Shade above future critical readings.
-    data.append(
-        {
-            'type': 'scatter',
-            'x': min_cf_datetimes,
-            'y': [27.0 for dt in min_cf_datetimes],
-            'marker': {'color': 'red'},
-            'fill': 'tonexty',
-        }
-    )
+        ax.plot(critical_datetimes, critical_heights, c='red', alpha=0.6,
+                linewidth=1)
+        ax.scatter(critical_datetimes, critical_heights, c='red', alpha=0.8,
+                s=15)
+        # cp_label = critical_points[0].dt_reading.astimezone(aktz).strftime(
+                # '%m/%d/%Y %H:%M:%S')
+        label_time = critical_points[0].dt_reading.astimezone(aktz)
+        cp_label = label_time.strftime('%m/%d/%Y %H:%M:%S') + '    '
+        ax.text(label_time, critical_heights[0], cp_label,
+                horizontalalignment='right')
 
-    my_layout = {
-        'title': f"Current Indian River Gauge Readings, {title_date_str}",
-        'xaxis': {
-                'title': 'Date/ Time',
-            },
-        'yaxis': {
-                'title': 'River height (ft)',
-                'range': [y_min, y_max]
-            }
-    }
+    # Set chart and axes titles, and other formatting.
+    title = f"Indian River Gauge Readings, {title_date_str}"
+    ax.set_title(title, loc='left')
+    ax.set_xlabel('', fontsize=16)
+    ax.set_ylabel("River height (ft)")
 
-    fig = {'data': data, 'layout': my_layout}
 
-    # Set filename.
-    if not filename:
-        filename = f"ir_plot_{readings[-1].dt_reading.__str__()[:10]}.html"
-    filename = 'plot_files/irg_cone_plot_current.html'
-    offline.plot(fig, filename=filename, auto_open=False)
 
-    filename = 'irg_viz/templates/irg_viz/irg_cone_plot_current.html'
-    offline.plot(fig, filename=filename, auto_open=False)
+    # # Format major x ticks.
+    # xaxis_maj_fmt = mdates.DateFormatter('%H:%M\n%b %d, %Y')
+    # ax.xaxis.set_major_formatter(xaxis_maj_fmt)
+    # # Label day every 12 hours; 0.5 corresponds to half a day
+    # ax.xaxis.set_major_locator(ticker.MultipleLocator(0.5))
+
+    # # Format minor x ticks.
+    # xaxis_min_fmt = mdates.DateFormatter('%H:%M')
+    # ax.xaxis.set_minor_formatter(xaxis_min_fmt)
+    # # Label every 6 hours:
+    # ax.xaxis.set_minor_locator(ticker.MultipleLocator(0.25))
+
+    # # Format dates that appear in status bar when hovering.
+    # hover_fmt = mdates.DateFormatter('%H:%M  %b %d, %Y')
+    # ax.fmt_xdata = hover_fmt
+
+
+    # # Try building my own tick labels.
+    # my_ticklabels = []
+    # for dt in datetimes:
+    #     dt_label = dt.strftime('%H:%M\n%b %d, %Y')
+
+    #     times_to_label = ['00:00', '06:00', '12:00', '18:00']
+    #     use_label = any(time in dt_label for time in times_to_label)
+
+    #     if use_label:
+    #         my_ticklabels.append(dt_label)
+    #     else:
+    #         my_ticklabels.append('')
+
+    # # Use these tick labels.
+    # ax.set_xticklabels(my_ticklabels, minor=False)
+
+
+    # Make major and minor x ticks small.
+    ax.tick_params(axis='x', which='both', labelsize=8)
+
+    # DEV: Uncomment this to see interactive plots during dev work,
+    #   rather than opening file images.
+    # plt.show()
+
+    # Save to file.
+    filename = f"current_ir_plots/ir_plot_{readings[-1].dt_reading.__str__()[:10]}.png"
+    filename = "media/plot_images/irg_critical_forecast_plot.png"
+    plt.savefig(filename)
+
+    # filename = "irg_viz/"
+
+    # --- Save the plot
+
+    # # Set filename.
+    # if not filename:
+    #     filename = f"ir_plot_{readings[-1].dt_reading.__str__()[:10]}.html"
+    # filename = 'plot_files/irg_cone_plot_current.html'
+    # offline.plot(fig, filename=filename, auto_open=False)
+
+    # filename = 'irg_viz/templates/irg_viz/irg_cone_plot_current.html'
+    # offline.plot(fig, filename=filename, auto_open=False)

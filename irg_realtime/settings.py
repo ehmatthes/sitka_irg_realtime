@@ -128,4 +128,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # My settings.
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = 'media/'
+
 LOGIN_URL = 'users:login'

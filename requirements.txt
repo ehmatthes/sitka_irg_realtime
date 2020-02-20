@@ -2,11 +2,17 @@ asgiref==3.2.3
 beautifulsoup4==4.8.2
 certifi==2019.11.28
 chardet==3.0.4
+cycler==0.10.0
 Django==3.0.3
 django-bootstrap4==1.1.1
 idna==2.8
+kiwisolver==1.1.0
 lxml==4.5.0
+matplotlib==3.1.3
+numpy==1.18.1
 plotly==4.5.0
+pyparsing==2.4.6
+python-dateutil==2.8.1
 pytz==2019.3
 requests==2.22.0
 retrying==1.3.3

@@ -1,6 +1,8 @@
 """Defines URL patterns for irg_viz."""
 
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 
 from . import views
 
@@ -16,3 +18,8 @@ urlpatterns = [
     path('irg_critical_forecast_plot', views.irg_critical_forecast_plot,
             name='irg_critical_forecast_plot'),
 ]
+
+# View images locally.
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                                    document_root=settings.MEDIA_ROOT)
