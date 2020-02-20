@@ -125,7 +125,7 @@ def plot_current_data_cone(readings, critical_points=[], known_slides=[],
     interval = datetime.timedelta(minutes=15)
     future_readings = []
     new_reading_dt = readings[-1].dt_reading + interval
-    for _ in range(24):
+    for _ in range(18):
         new_reading = IRReading(new_reading_dt, 23.0)
         future_readings.append(new_reading)
         new_reading_dt += interval
@@ -233,7 +233,7 @@ def plot_current_data_cone(readings, critical_points=[], known_slides=[],
             'type': 'scatter',
             'x': min_cf_datetimes,
             'y': min_cf_heights,
-            'marker': {'color': 'red'},
+            'marker': {'color': 'red', 'opacity': 0.5, 'size': 3},
             'name': 'min critical points',
         }
     )
@@ -243,7 +243,7 @@ def plot_current_data_cone(readings, critical_points=[], known_slides=[],
             'type': 'scatter',
             'x': min_cf_datetimes,
             'y': [27.0 for dt in min_cf_datetimes],
-            'marker': {'color': 'red'},
+            'marker': {'color': 'red', 'opacity': 0.5, 'size': 3},
             'fill': 'tonexty',
             'name': 'critical region',
         }
