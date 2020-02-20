@@ -39,7 +39,7 @@ def plot_critical_forecast_mpl(readings, critical_points=[],
     interval = datetime.timedelta(minutes=15)
     future_readings = []
     new_reading_dt = readings[-1].dt_reading
-    for _ in range(24):
+    for _ in range(18):
         new_reading = IRReading(new_reading_dt, 23.0)
         future_readings.append(new_reading)
         new_reading_dt += interval
@@ -115,8 +115,9 @@ def plot_critical_forecast_mpl(readings, critical_points=[],
         #         horizontalalignment='right')
 
     # Plot minimum future critical readings.
+    #   Plot these points, and shade to max y value.
     ax.plot(min_cf_datetimes, min_cf_heights, c='red', alpha=0.4)
-
+    ax.fill_between(min_cf_datetimes, min_cf_heights, 27.5, color='red', alpha=0.2)
 
 
     # Set chart and axes titles, and other formatting.
