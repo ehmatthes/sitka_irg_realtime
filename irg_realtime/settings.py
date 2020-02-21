@@ -132,3 +132,20 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = 'media/'
 
 LOGIN_URL = 'users:login'
+
+if os.environ.get('ENVIRON') == 'DEPLOYED':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.psycopg2',
+            'NAME': 'my_irg_db',
+            'USER': 'my_irg_db_user',
+            'PASSWORD': 'my_irg_db_wonder',
+            'HOST': '',
+            'PORT': '',
+        }
+    }
+
+    STATIC_ROOT = '/home/ehmatthes/irg_realtime/static/'
+    STATIC_URL = '/static/'
+
+    ALLOWED_HOSTS = ['167.71.116.184']
