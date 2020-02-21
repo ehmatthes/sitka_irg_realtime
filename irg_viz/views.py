@@ -21,3 +21,8 @@ def irg_critical_forecast_plot_interactive(request):
 def irg_critical_forecast_plot(request):
     """Static critical forecast plot."""
     return render(request, 'irg_viz/irg_critical_forecast_plot.html')
+
+@login_required
+def irg_critical_forecast_plot_extended(request):
+    """Static critical forecast plot, extended back x hours."""
+    return render(request, 'irg_viz/irg_critical_forecast_plot_extended.html')

@@ -23,6 +23,12 @@ urlpatterns = [
     path('irg_critical_forecast_plot', views.irg_critical_forecast_plot,
             name='irg_critical_forecast_plot'),
 
+    # Static critical forecast plot, extended back x hours.
+    path('irg_critical_forecast_plot_extended',
+            views.irg_critical_forecast_plot_extended,
+            name='irg_critical_forecast_plot_extended'),
+
+
 ]
 
 # View images locally.

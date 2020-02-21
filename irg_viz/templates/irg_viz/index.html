@@ -9,13 +9,20 @@
         from the Indian River stream gauge, with the goal of helping to assess
         the risk of imminent landslides. This is an experimental project; the data you see here may be outdated or incorrect, and the interpretations of this data may be flawed.
       </p>
+
       <p><a href="{% url 'irg_viz:simple_irg_plot' %}">Simple river gauge plot</a> - An interactive plot of the stream gauge readings, plotted with a consistent y-scale.</p>
+
       <p><a href="{% url 'irg_viz:irg_critical_forecast_plot_interactive' %}">Interactive critical forecast plot</a> - An interactive plot showing how close the river currently is to the characteristics associated with landslides.</p>
+
       <p><a href="{% url 'irg_viz:irg_critical_forecast_plot' %}">Static critical forecast plot</a> - A static version (png) of the critical forecast plot, showing how close the river currently is to the characteristics associated with landslides.</p>
+
+      <p><a href="{% url 'irg_viz:irg_critical_forecast_plot_extended' %}">Static critical forecast plot - extended</a> - A static version (png) of the critical forecast plot, showing how close the river currently is to the characteristics associated with landslides. This version also shows how close conditions were to being critical over the previous 6 hours.</p>
+
     {% else %}
       <p class="lead">This is an experimental project; you must be logged in
         to see anything.
       </p>
+
     {% endif %}
 
   </div>
