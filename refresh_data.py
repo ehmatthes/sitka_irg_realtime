@@ -2,13 +2,18 @@
 Pulls in new data, processes it, and prepares the site to serve freshly
 updated data.
 """
+import os
 
 import utils.analysis_utils as a_utils
 from utils import plot_utils, plot_utils_mpl
 
+# On deployed site, always use fresh data.
+USE_FRESH_DATA = False
+if os.environ.get('ENVIRON') == 'DEPLOYED':
+    USE_FRESH_DATA = True
 
 # Fetch current data, which is xml, and convert to readings.
-current_data = a_utils.fetch_current_data(fresh=False)
+current_data = a_utils.fetch_current_data(fresh=USE_FRESH_DATA)
 readings = a_utils.process_xml_data(current_data)
 
 # Focus on most recent readings, not an entire week.
