@@ -136,11 +136,11 @@ LOGIN_URL = 'users:login'
 if os.environ.get('ENVIRON') == 'DEPLOYED':
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.psycopg2',
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'NAME': 'my_irg_db',
             'USER': 'my_irg_db_user',
             'PASSWORD': 'my_irg_db_wonder',
-            'HOST': '',
+            'HOST': 'localhost',
             'PORT': '',
         }
     }
