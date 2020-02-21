@@ -8,7 +8,7 @@ from utils import plot_utils, plot_utils_mpl
 
 
 # Fetch current data, which is xml, and convert to readings.
-current_data = a_utils.fetch_current_data(fresh=False)
+current_data = a_utils.fetch_current_data(fresh=True)
 readings = a_utils.process_xml_data(current_data)
 
 # Focus on most recent readings, not an entire week.
