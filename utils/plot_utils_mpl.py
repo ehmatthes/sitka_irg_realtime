@@ -328,9 +328,9 @@ def plot_critical_forecast_mpl_extended(readings, critical_points=[],
     ax.fill_between(min_cf_datetimes, min_cf_heights, 27.5, color='red', alpha=0.2)
 
     # Plot previous critical readings, and shade to max y value.
-    ax.plot(min_crit_prev_datetimes, min_crit_prev_heights, c='red', alpha=0.4)
+    ax.plot(min_crit_prev_datetimes, min_crit_prev_heights, c='red', alpha=0.3)
     ax.fill_between(min_crit_prev_datetimes, min_crit_prev_heights, 27.5,
-                                                    color='red', alpha=0.2)
+                                                    color='red', alpha=0.1)
 
 
     # Set chart and axes titles, and other formatting.
