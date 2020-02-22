@@ -1,7 +1,7 @@
 """Utility functions for analyzing stream gauge data, and slide data.
 """
 
-import math, datetime
+import math, datetime, csv
 
 from xml.etree import ElementTree as ET
 
@@ -48,6 +48,54 @@ def fetch_current_data(fresh=True, filename='current_data/current_data.txt'):
             return current_data
 
 
+def fetch_current_data_usgs(fresh=True,
+            filename='current_data/current_data_usgs.txt'):
+    """Fetches current data directly from the usgs source.
+
+    If fresh is False, looks for cached data.
+      Cached data is really just for development purposes, to avoid hitting
+      the server unnecessarily.
+
+    Returns the current data file.
+    """
+
+    # Data url format:
+    # https://waterdata.usgs.gov/ak/nwis/uv?cb_00065=on&format=rdb \ 
+    #   &site_no=15087700&period=&begin_date=2020-02-18&end_date=2020-02-21
+    # Grab last 3 days of data; will be 48 hrs + today's hours.
+    # This is working now. Do I need to pay attention to time zones in requests?
+    #   Will this work the same on the server? Would errors happen around
+    #   UTC midnight, since I'm just using the day, not time?
+    dt_end = datetime.datetime.now()
+    dt_end_str = dt_end.strftime("%Y-%m-%d")
+    dt_start = dt_end - datetime.timedelta(days=3)
+    dt_start_str = dt_start.strftime("%Y-%m-%d")
+
+    usgs_url = f"https://waterdata.usgs.gov/ak/nwis/uv?cb_00065=on&format=rdb"
+    usgs_url += f"&site_no=15087700&period=&begin_date={dt_start_str}"
+    usgs_url += f"&end_date={dt_end_str}"
+
+    if fresh:
+        # All of above should be moved to a helper function if fresh.
+        r = requests.get(usgs_url)
+
+        with open(filename, 'w') as f:
+            f.write(r.text)
+
+        return filename
+
+    else:
+        # Try to use cached data.
+        try:
+            with open(filename) as f:
+                current_data = f.read()
+        except:
+            # Can't read from file, so fetch fresh data.
+            return fetch_current_data(fresh=True)
+        else:
+            return filename
+
+
 def process_xml_data(data):
     """Processes xml data from text file.
     Returns a list of readings.
@@ -76,6 +124,17 @@ def process_xml_data(data):
     readings.reverse()
 
     return readings
+
+def process_usgs_data(usgs_data_file):
+    """Processes data that came directly from the USGS.
+    Returns a list of readings.
+    """
+    with open(usgs_data_file) as f:
+        reader = csv.reader(f, delimiter='\t')
+        for _ in range(28):
+            next(reader)
+        first_data_row = next(reader)
+        print(first_data_row)
 
 
 def get_critical_points(readings):
