@@ -73,14 +73,10 @@ def fetch_current_data_usgs(fresh=True,
     dt_end_ak_str = dt_end_ak.strftime("%Y-%m-%d")
     dt_start_ak = dt_end_ak - datetime.timedelta(days=3)
     dt_start_ak_str = dt_start_ak.strftime("%Y-%m-%d")
-    print(dt_end_utc.strftime("%Y/%m/%d %H:%M:%S"))
-    print(dt_end_ak.strftime("%Y/%m/%d %H:%M:%S"))
-    print(dt_start_ak.strftime("%Y/%m/%d %H:%M:%S"))
 
     usgs_url = f"https://waterdata.usgs.gov/ak/nwis/uv?cb_00065=on&format=rdb"
     usgs_url += f"&site_no=15087700&period=&begin_date={dt_start_ak_str}"
     usgs_url += f"&end_date={dt_end_ak_str}"
-    print(usgs_url)
 
     if fresh:
         # All of above should be moved to a helper function if fresh.
