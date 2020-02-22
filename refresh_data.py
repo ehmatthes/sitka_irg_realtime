@@ -8,7 +8,7 @@ import utils.analysis_utils as a_utils
 from utils import plot_utils, plot_utils_mpl
 
 # On deployed site, always use fresh data.
-USE_FRESH_DATA = False
+USE_FRESH_DATA = True
 if os.environ.get('ENVIRON') == 'DEPLOYED':
     USE_FRESH_DATA = True
 
@@ -19,8 +19,6 @@ if os.environ.get('ENVIRON') == 'DEPLOYED':
 # Fetch data directly from USGS, which is a tab-separated file?
 usgs_data_file = a_utils.fetch_current_data_usgs(fresh=USE_FRESH_DATA)
 readings = a_utils.process_usgs_data(usgs_data_file)
-
-sys.exit()
 
 # --- This remains the same, regardless of what the data source was. ---
 

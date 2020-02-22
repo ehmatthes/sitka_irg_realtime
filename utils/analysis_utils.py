@@ -91,7 +91,7 @@ def fetch_current_data_usgs(fresh=True,
                 current_data = f.read()
         except:
             # Can't read from file, so fetch fresh data.
-            return fetch_current_data(fresh=True)
+            return fetch_current_data_usgs(fresh=True)
         else:
             return filename
 
@@ -129,7 +129,6 @@ def process_usgs_data(usgs_data_file):
     """Processes data that came directly from the USGS.
     Returns a list of readings.
     """
-    print('processing usgs data')
     aktz = pytz.timezone('US/Alaska')
     with open(usgs_data_file) as f:
         reader = csv.reader(f, delimiter='\t')
@@ -154,8 +153,9 @@ def process_usgs_data(usgs_data_file):
                 new_reading = IRReading(ts_utc, height)
                 readings.append(new_reading)
 
-    # Readings should be in chronological order.
-    assert(readings[-1].dt_reading > readings[0].dt_reading)
+    # Make sure readings are in chronological order.
+    if readings[-1].dt_reading < readings[0].dt_reading:
+        readings.reverse()
 
     return readings
 
