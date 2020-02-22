@@ -9,3 +9,8 @@ notes*
 screenshots/
 
 .DS_Store
+
+
+current_data/
+media/plot_images/
+irg_viz/templates/irg_viz/plot_fragments/

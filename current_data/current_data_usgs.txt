@@ -11,7 +11,7 @@
 # Automated-retrieval info: https://help.waterdata.usgs.gov/faq/automated-retrievals
 #
 # Contact:   gs-w_support_nwisweb@usgs.gov
-# retrieved: 2020-02-22 12:32:00 EST       (vaww01)
+# retrieved: 2020-02-22 12:34:09 EST       (caww01)
 #
 # Data for the following 1 site(s) are contained in this file
 #    USGS 15087700 INDIAN R AT SITKA AK
