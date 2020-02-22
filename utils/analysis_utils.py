@@ -129,12 +129,44 @@ def process_usgs_data(usgs_data_file):
     """Processes data that came directly from the USGS.
     Returns a list of readings.
     """
+    print('processing usgs data')
+    aktz = pytz.timezone('US/Alaska')
     with open(usgs_data_file) as f:
         reader = csv.reader(f, delimiter='\t')
+        # Skip past all the header rows.
         for _ in range(28):
             next(reader)
-        first_data_row = next(reader)
-        print(first_data_row)
+        readings = []
+        for row in reader:
+            # Skip any data that causes errors.
+            try:
+                ts_naive = datetime.datetime.strptime(row[2], '%Y-%m-%d %H:%M')
+                tz_str = row[3]
+                height = float(row[4])
+            except Exception as e:
+                # DEV: Bare except is bad, but fix.
+                # Log this?
+                pass
+                print('exception', e)
+            else:
+                print(ts_naive, tz_str, height)
+                # # Current tz is either AKST or AKDT. Convert to UTC.
+                # print('  ', ts.tzinfo, ' - ', ts)
+                # ts = ts.replace(tzinfo=aktz)
+                # print('  ', ts.tzinfo, ' - ', ts)
+                # ts_utc = ts.replace(tzinfo=pytz.utc)
+                # print('  ', ts_utc.tzinfo, ' - ', ts_utc)
+
+                # ts_aktz = aktz.localize(ts)
+                # ts_utc = ts_aktz.replace(tzinfo=pytz.utc)
+                # print('  ', ts_aktz, ', ', ts_utc)
+                # dt_reading_ak = tx.
+                # dt_reading_utc = ts.replace(tzinfo=pytz.utc)
+                # print(ts, ' - ', dt_reading_utc)
+
+                ts_ak = aktz.localize(ts_naive)
+                ts_utc = ts_ak.astimezone(pytz.utc)
+                print('  ', ts_ak, ', ', ts_utc)
 
 
 def get_critical_points(readings):
