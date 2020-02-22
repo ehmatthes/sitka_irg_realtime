@@ -149,24 +149,15 @@ def process_usgs_data(usgs_data_file):
                 pass
                 print('exception', e)
             else:
-                print(ts_naive, tz_str, height)
-                # # Current tz is either AKST or AKDT. Convert to UTC.
-                # print('  ', ts.tzinfo, ' - ', ts)
-                # ts = ts.replace(tzinfo=aktz)
-                # print('  ', ts.tzinfo, ' - ', ts)
-                # ts_utc = ts.replace(tzinfo=pytz.utc)
-                # print('  ', ts_utc.tzinfo, ' - ', ts_utc)
-
-                # ts_aktz = aktz.localize(ts)
-                # ts_utc = ts_aktz.replace(tzinfo=pytz.utc)
-                # print('  ', ts_aktz, ', ', ts_utc)
-                # dt_reading_ak = tx.
-                # dt_reading_utc = ts.replace(tzinfo=pytz.utc)
-                # print(ts, ' - ', dt_reading_utc)
-
                 ts_ak = aktz.localize(ts_naive)
                 ts_utc = ts_ak.astimezone(pytz.utc)
-                print('  ', ts_ak, ', ', ts_utc)
+                new_reading = IRReading(ts_utc, height)
+                readings.append(new_reading)
+
+    # Readings should be in chronological order.
+    assert(readings[-1].dt_reading > readings[0].dt_reading)
+
+    return readings
 
 
 def get_critical_points(readings):
