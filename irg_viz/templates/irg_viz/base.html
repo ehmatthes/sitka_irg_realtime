@@ -25,8 +25,15 @@
       <span class="navbar-toggler-icon"></span></button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'irg_viz:index'%}"></a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Plots</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="{% url 'irg_viz:simple_irg_plot' %}">Simple IRG plot</a>
+            <a class="dropdown-item" href="{% url 'irg_viz:irg_critical_forecast_plot_interactive' %}">Interactive critical forecast plot</a>
+            <a class="dropdown-item" href="{% url 'irg_viz:irg_critical_forecast_plot' %}">Static critical forecast plot</a>
+            <a class="dropdown-item" href="{% url 'irg_viz:irg_critical_forecast_plot_extended' %}">Static critical forecast plot - extended</a>
+          </div>
+        </li>
       </ul>
       <ul class="navbar-nav ml-auto">
         {% if user.is_authenticated %}
