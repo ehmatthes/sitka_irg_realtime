@@ -292,9 +292,9 @@ def plot_critical_forecast_mpl_extended(readings, critical_points=[],
     dt_title = readings[-1].dt_reading.astimezone(aktz)
     title_date_str = dt_title.strftime('%m/%d/%Y')
 
-    # Set filename.
-    if not filename:
-        filename = f"ir_plot_{readings[-1].dt_reading.__str__()[:10]}.html"
+    # # Set filename.
+    # if not filename:
+    #     filename = f"ir_plot_{readings[-1].dt_reading.__str__()[:10]}.html"
 
     # --- Plotting code
 
@@ -349,5 +349,6 @@ def plot_critical_forecast_mpl_extended(readings, critical_points=[],
 
     # Save to file.
     # filename = f"current_ir_plots/ir_plot_{readings[-1].dt_reading.__str__()[:10]}.png"
-    filename = "media/plot_images/irg_critical_forecast_plot_current_extended.png"
+    if not filename:
+        filename = "media/plot_images/irg_critical_forecast_plot_current_extended.png"
     plt.savefig(filename)
