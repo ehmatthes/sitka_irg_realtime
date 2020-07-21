@@ -13,3 +13,5 @@ screenshots/
 current_data/
 media/plot_images/
 irg_viz/templates/irg_viz/plot_fragments/
+
+animation_frames/

@@ -334,7 +334,7 @@ def plot_critical_forecast_mpl_extended(readings, critical_points=[],
 
 
     # Set chart and axes titles, and other formatting.
-    title = f"Indian River Gauge Readings, {title_date_str}"
+    title = f"Indian River Gauge Readings, {title_date_str}, {filename}"
     ax.set_title(title, loc='left')
     ax.set_xlabel('', fontsize=16)
     ax.set_ylabel("River height (ft)")
@@ -352,3 +352,8 @@ def plot_critical_forecast_mpl_extended(readings, critical_points=[],
     if not filename:
         filename = "media/plot_images/irg_critical_forecast_plot_current_extended.png"
     plt.savefig(filename)
+
+    print(f"  saved: {filename}")
+
+    # Close figure, especially helpful when rendering many frames for animation.
+    plt.close('all')
