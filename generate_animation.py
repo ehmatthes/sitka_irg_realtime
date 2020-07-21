@@ -3,7 +3,7 @@
 # Needs 48 hours of readings prior to initial point as well.
 
 
-import os, sys
+import os, sys, pickle
 from pathlib import Path
 
 import utils.analysis_utils as a_utils
@@ -13,8 +13,8 @@ from utils import plot_utils, plot_utils_mpl
 usgs_data_file = 'animation_input_files/current_data_usgs.txt'
 kramer_data_file = 'animation_input_files/reading_dump_08192015.pkl'
 
-data_file = usgs_data_file
-readings_per_hour = 4
+data_file = kramer_data_file
+readings_per_hour = 1
 file_extension = Path(data_file).suffix
 
 if file_extension == '.txt':
@@ -24,6 +24,7 @@ elif file_extension == '.pkl':
         readings = pickle.load(f)
 else:
     print("Data file extension not recognized:", file_extension)
+print(f"Found {len(readings)} readings.")
 
 # Make sure readings are sorted.
 prev_reading = readings[0]
@@ -76,6 +77,9 @@ while first_index < len(readings) - 48*readings_per_hour+1:
 
     # if first_index > 10:
     #     break
-
-os.system("cd animation_frames && ffmpeg -framerate 5 -pattern_type glob -i '*.png'   -c:v libx264 -pix_fmt yuv420p animation_file_out.mp4")
+if readings_per_hour == 4:
+    framerate = 5
+elif readings_per_hour == 1:
+    framerate = 2
+os.system(f"cd animation_frames && ffmpeg -framerate {framerate} -pattern_type glob -i '*.png'   -c:v libx264 -pix_fmt yuv420p animation_file_out.mp4")
 os.system("cp animation_frames/animation_file_out.mp4 animation_output/animation_file_out.mp4")
