@@ -64,5 +64,5 @@ while first_index < len(readings) - 48*4+1:
     # if first_index > 10:
     #     break
 
-os.system("cd animation_frames && ffmpeg -framerate 10 -pattern_type glob -i '*.png'   -c:v libx264 -pix_fmt yuv420p animation_file_out.mp4")
+os.system("cd animation_frames && ffmpeg -framerate 5 -pattern_type glob -i '*.png'   -c:v libx264 -pix_fmt yuv420p animation_file_out.mp4")
 os.system("cp animation_frames/animation_file_out.mp4 animation_output/animation_file_out.mp4")
