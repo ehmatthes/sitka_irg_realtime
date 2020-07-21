@@ -9,7 +9,7 @@ import utils.analysis_utils as a_utils
 from utils import plot_utils, plot_utils_mpl
 
 
-usgs_data_file = 'current_data/current_data_usgs.txt'
+usgs_data_file = 'animation_input_files/current_data_usgs.txt'
 readings = a_utils.process_usgs_data(usgs_data_file)
 
 # Make sure readings are sorted.
