@@ -4,13 +4,26 @@
 
 
 import os, sys
+from pathlib import Path
 
 import utils.analysis_utils as a_utils
 from utils import plot_utils, plot_utils_mpl
 
-
+# Will store a number of specific data files here, and then act on data_file.
 usgs_data_file = 'animation_input_files/current_data_usgs.txt'
-readings = a_utils.process_usgs_data(usgs_data_file)
+kramer_data_file = 'animation_input_files/reading_dump_08192015.pkl'
+
+data_file = usgs_data_file
+readings_per_hour = 4
+file_extension = Path(data_file).suffix
+
+if file_extension == '.txt':
+    readings = a_utils.process_usgs_data(data_file)
+elif file_extension == '.pkl':
+    with open(data_file, 'rb') as f:
+        readings = pickle.load(f)
+else:
+    print("Data file extension not recognized:", file_extension)
 
 # Make sure readings are sorted.
 prev_reading = readings[0]
@@ -46,11 +59,11 @@ os.system('mkdir animation_frames')
 # Loop over a set of readings, and send successive sets of readings
 #  and numbered filenames to pcfme()
 first_index = 0
-while first_index < len(readings) - 48*4+1:
+while first_index < len(readings) - 48*readings_per_hour+1:
     # ffmpeg will use images in alphabetical order, so zero-pad frame numbers.
     alph_frame_str = f"{first_index:04}"
     frame_filename = f"animation_frames/animation_frame_{alph_frame_str}.png"
-    end_index = first_index + 48*4
+    end_index = first_index + 48*readings_per_hour
     frame_readings = readings[first_index:end_index]
     critical_points = a_utils.get_critical_points(frame_readings)
 
