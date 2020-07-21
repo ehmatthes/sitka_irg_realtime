@@ -39,10 +39,15 @@ for reading in readings:
 # Modify plot_cfme() to generate an animation instead of static plot.
 #  May take 48*4*20 sec to run???
 
+# Get rid of any existing animation files.
+os.system('rm -rf animation_frames')
+os.system('mkdir animation_frames')
+
 # Loop over a set of readings, and send successive sets of readings
 #  and numbered filenames to pcfme()
 first_index = 0
 while first_index < len(readings) - 48*4+1:
+    # ffmpeg will use images in alphabetical order, so zero-pad frame numbers.
     alph_frame_str = f"{first_index:04}"
     frame_filename = f"animation_frames/animation_frame_{alph_frame_str}.png"
     end_index = first_index + 48*4
@@ -58,3 +63,6 @@ while first_index < len(readings) - 48*4+1:
 
     # if first_index > 10:
     #     break
+
+os.system("cd animation_frames && ffmpeg -framerate 10 -pattern_type glob -i '*.png'   -c:v libx264 -pix_fmt yuv420p animation_file_out.mp4")
+os.system("cp animation_frames/animation_file_out.mp4 animation_output/animation_file_out.mp4")
