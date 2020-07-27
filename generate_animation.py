@@ -2,6 +2,10 @@
 
 # Needs 48 hours of readings prior to initial point as well.
 
+# Animate recent event:
+#   Run refresh_data.py, copy current data file to animation_input_files,
+#   run this file.
+
 
 import os, sys, pickle
 from pathlib import Path
@@ -12,9 +16,10 @@ from utils import plot_utils, plot_utils_mpl
 # Will store a number of specific data files here, and then act on data_file.
 usgs_data_file = 'animation_input_files/current_data_usgs.txt'
 kramer_data_file = 'animation_input_files/reading_dump_08192015.pkl'
+medvejie_09212019_data_file = 'animation_input_files/reading_dump_09212019.pkl'
 
-data_file = kramer_data_file
-readings_per_hour = 1
+data_file = usgs_data_file
+readings_per_hour = 4
 file_extension = Path(data_file).suffix
 
 if file_extension == '.txt':
