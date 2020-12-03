@@ -1,4 +1,4 @@
-sitka\_irg\_realtime
+Realtime analysis of the Indian River gauge in Sitka
 ===
 
 This is a project to help the residents of Sitka understand the real-time risk of landslides in the local area. The goal is to help people know when there is an imminent risk of slides, and also to know when there is low risk even though it seems to be raining hard.
