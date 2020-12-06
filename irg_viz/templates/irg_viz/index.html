@@ -22,8 +22,10 @@
   {% if user.is_authenticated %}
     <img src="{% get_media_prefix %}plot_images/irg_critical_forecast_plot_current_extended.png">
 
-    <p>The red shade region represents conditions when the risk of slides has been elevated in the past. The red region is <i>not</i> just based on river height; it is based on river height, <i>and</i> how quickly the river is rising. In a 5-year period from 2014-2019, the river reached the red shaded region 9 times. 3 of those periods resulted in a slide which occurred while the river was in the red shaded region. There may have been a couple slides during these periods as well; it is difficult to place the timing of a landslide if no one observed it happen.</p>
+    <p>The red shaded region represents conditions when the risk of slides has been elevated in the past. The red region is <i>not</i> just based on river height; it is based on river height, <i>and</i> how quickly the river is rising. In a 5-year period from 2014-2019, the river reached the red shaded region 9 times. 3 of those periods resulted in a slide which occurred while the river was in the red shaded region. There may have been a couple slides during these periods as well; it is difficult to place the timing of a landslide if no one observed it happen.</p>
     <p>The light red region shows the critical readings over the previous 6 hours; this shows how close the river was to being in the critical region over the last 6 hours. The dark red region shows how close the river is to being in the critical region over the next 4.5 hours. It's important to note that if the river rises slowly, the critical shaded region will rise as well. To indicate elevated risk of slides, the river must rise quickly for an extended period.</p>
     <p>Data source: <a href="https://waterdata.usgs.gov/ak/nwis/uv?cb_00065=on&format=html&site_no=15087700">https://waterdata.usgs.gov/ak/nwis/uv?cb_00065=on&format=html&site_no=15087700</a></p>
+
+    <hr />
   {% endif %}
 {% endblock content %}
