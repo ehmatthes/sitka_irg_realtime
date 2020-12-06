@@ -26,10 +26,6 @@ readings = a_utils.process_usgs_data(usgs_data_file)
 recent_readings = a_utils.get_recent_readings(readings, 48)
 critical_points = a_utils.get_critical_points(recent_readings)
 
-# Static forecast plot.
-plot_utils_mpl.plot_critical_forecast_mpl(recent_readings,
-                                                    critical_points)
-
 # Static forecast plot, extended.
 plot_utils_mpl.plot_critical_forecast_mpl_extended(recent_readings,
                                                       critical_points)
