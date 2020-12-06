@@ -151,9 +151,9 @@ def plot_critical_forecast_mpl_extended(readings, critical_points=[],
 
     # Add labels for critical regions.
     ax.text(0.78, 0.98, 'Previous \n6 hrs', verticalalignment='top',
-            transform=ax.transAxes, fontsize=12)
+            transform=ax.transAxes, fontsize=8)
     ax.text(0.89, 0.98, 'Next \n4.5 hrs', verticalalignment='top',
-            transform=ax.transAxes)
+            transform=ax.transAxes, fontsize=8)
 
     # Set chart and axes titles, and other formatting.
     title = f"Indian River Gauge Readings - {title_date_str}"
