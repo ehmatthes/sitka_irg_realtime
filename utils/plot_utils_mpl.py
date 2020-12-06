@@ -111,7 +111,7 @@ def plot_critical_forecast_mpl_extended(readings, critical_points=[],
 
     # Set date string for chart title.
     dt_title = readings[-1].dt_reading.astimezone(aktz)
-    title_date_str = dt_title.strftime('%m/%d/%Y')
+    title_date_str = dt_title.strftime('%m/%d/%Y %H:%M')
 
     # # Set filename.
     # if not filename:
@@ -155,8 +155,7 @@ def plot_critical_forecast_mpl_extended(readings, critical_points=[],
 
 
     # Set chart and axes titles, and other formatting.
-    ts_title = dt_title.strftime("%H:%M:%S")
-    title = f"Indian River Gauge Readings, {title_date_str}, {ts_title}"
+    title = f"Indian River Gauge Readings - {title_date_str}"
     ax.set_title(title, loc='left')
     ax.set_xlabel('', fontsize=16)
     ax.set_ylabel("River height (ft)")
