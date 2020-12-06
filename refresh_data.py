@@ -8,7 +8,7 @@ import utils.analysis_utils as a_utils
 from utils import plot_utils_mpl
 
 # On deployed site, always use fresh data.
-USE_FRESH_DATA = True
+USE_FRESH_DATA = False
 if os.environ.get('ENVIRON') == 'DEPLOYED':
     USE_FRESH_DATA = True
 
