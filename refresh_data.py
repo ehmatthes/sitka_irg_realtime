@@ -5,7 +5,7 @@ updated data.
 import os, sys
 
 import utils.analysis_utils as a_utils
-from utils import plot_utils, plot_utils_mpl
+from utils import plot_utils_mpl
 
 # On deployed site, always use fresh data.
 USE_FRESH_DATA = True
@@ -25,12 +25,6 @@ readings = a_utils.process_usgs_data(usgs_data_file)
 # Focus on most recent readings, not an entire week.
 recent_readings = a_utils.get_recent_readings(readings, 48)
 critical_points = a_utils.get_critical_points(recent_readings)
-
-# Simple interactive plot of current data.
-plot_utils.plot_current_data_html(recent_readings)
-
-# Interactive forecast plot.
-plot_utils.plot_interactive_critical_forecast_html(recent_readings)
 
 # Static forecast plot.
 plot_utils_mpl.plot_critical_forecast_mpl(recent_readings,
