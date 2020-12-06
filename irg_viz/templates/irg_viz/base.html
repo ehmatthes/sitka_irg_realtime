@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1,
     shrink-to-fit=no">
-  <title>Indian River Visualizations</title>
+  <title>Indian River Analysis</title>
 
   {% bootstrap_css %}
   {% bootstrap_javascript jquery='full' %}
@@ -17,21 +17,14 @@
   <nav class="navbar navbar-expand-md navbar-light bg-light mb-4 border">
 
     <a class="navbar-brand" href="{% url 'irg_viz:index'%}">
-        Indian River Visualizations</a>
+        Indian River Analysis</a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse"
         data-target="#navbarCollapse" aria-controls="navbarCollapse"
         aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span></button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Plots</a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="{% url 'irg_viz:irg_critical_forecast_plot_extended' %}">Static critical forecast plot - extended</a>
-          </div>
-        </li>
-      </ul>
+
       <ul class="navbar-nav ml-auto">
         {% if user.is_authenticated %}
           <li class="nav-item">
