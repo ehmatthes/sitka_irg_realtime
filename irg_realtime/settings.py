@@ -125,7 +125,20 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+# These are the places Django will look for static files when running collectstatic.
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "irg_realtime/static/")
+]
+
 STATIC_URL = '/static/'
+
+# This is where static files will be collected to.
+#  This is the directory that will be overwritten on each collectstatic call.
+if os.environ.get('ENVIRON') == 'LOCAL':
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+    print(f"STATIC_ROOT: {STATIC_ROOT}")
+elif os.environ.get('ENVIRON') == 'DEPLOYED':
+    STATIC_ROOT = '/srv/irg_realtime/static/'
 
 # My settings.
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
