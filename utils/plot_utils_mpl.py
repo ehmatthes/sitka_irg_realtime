@@ -173,7 +173,7 @@ def plot_critical_forecast_mpl_extended(readings, critical_points=[],
     # filename = f"current_ir_plots/ir_plot_{readings[-1].dt_reading.__str__()[:10]}.png"
     if not filename:
         filename = "media/plot_images/irg_critical_forecast_plot_current_extended.png"
-    plt.savefig(filename)
+    plt.savefig(filename, bbox_inches='tight')
 
     print(f"  saved: {filename}")
 
