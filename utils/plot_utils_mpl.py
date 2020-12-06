@@ -113,10 +113,6 @@ def plot_critical_forecast_mpl_extended(readings, critical_points=[],
     dt_title = readings[-1].dt_reading.astimezone(aktz)
     title_date_str = dt_title.strftime('%m/%d/%Y %H:%M')
 
-    # # Set filename.
-    # if not filename:
-    #     filename = f"ir_plot_{readings[-1].dt_reading.__str__()[:10]}.html"
-
     # --- Plotting code
 
     # Build static plot image.
