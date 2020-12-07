@@ -5,3 +5,18 @@
 img {
     padding-bottom: 1em;
 }
+
+
+p.notification-text {
+    margin-bottom: 0;
+    font-size: 1.2em;
+}
+
+p.notification-author {
+    text-align: right;
+    margin-bottom: 1em;
+}
+
+p.notification-timestamp {
+    margin-bottom: 0;
+}

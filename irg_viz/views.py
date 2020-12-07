@@ -10,7 +10,9 @@ def index(request):
 
     notifications = []
     if request.user.is_authenticated:
-        notifications = Notification.objects.filter(active=True)
+        notifications = (Notification.objects
+                .filter(active=True)
+                .order_by('-date_added'))
 
     context = {
         'notifications': notifications,

@@ -27,9 +27,9 @@
     {% if notifications %}
       <h2>Notifications:</h2>
       {% for notification in notifications %}
-        <p>{{ notification.text }}</p>
-        <p>Posted by: {{ notification.author }}</p>
-        <p>Notification timestamp: {{ notification.date_added|timezone:'US/Alaska'|date:'m/d/Y H:i e' }}</p>
+        <p class="notification-timestamp">{{ notification.date_added|timezone:'US/Alaska'|date:'m/d/Y H:i e' }}</p>
+        <p class="notification-text">{{ notification.text }}</p>
+        <p class="notification-author">Posted by: {{ notification.author }}</p>
       {% endfor %}
     {% else %}
       <p>Notifications: There are no active notifications at this time.</p>
