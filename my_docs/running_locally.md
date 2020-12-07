@@ -17,7 +17,20 @@ $ python manage.py migrate
 $ python manage.py runserver
 ```
 
-At this point the project should be running locally on your system, with stale data.
+At this point the project should be running locally on your system, with stale data. But you won't be able to see that yet until you have a user account. Run a couple scripts to get some sample users:
+
+```
+$ python make_groups.py
+$ python make_sample_users.py
+```
+
+Now you have three users:
+
+- `sample_user`, with no special permissions.
+- `sample_su`, with superuser permissions.
+- `sample_admin`, which is a member of `Site Admins`. This user can make notifications.
+
+Log in as any one of these users, and you can see the full home page with the stale data.
 
 To pull in fresh data, run the following command:
 
