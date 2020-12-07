@@ -20,3 +20,10 @@ p.notification-author {
 p.notification-timestamp {
     margin-bottom: 0;
 }
+
+div.notifications-active {
+    border-radius: 5px;
+    padding: 0.5em;
+    /*background-color: #e9abb4;*/
+    background-color: #fbb;
+}
