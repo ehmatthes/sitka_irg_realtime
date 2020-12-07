@@ -21,6 +21,20 @@
 
 {% block content %}
   {% if user.is_authenticated %}
+
+    <hr />
+    {% if notifications %}
+      <h2>Notifications:</h2>
+      {% for notification in notifications %}
+        <p>{{ notification.text }}</p>
+        <p>Posted by: {{ notification.author }}</p>
+        <p>Notification timestamp: {{ notification.date_added|date:'m/d/Y H:i' }}</p>
+      {% endfor %}
+    {% else %}
+      <p>Notifications: There are no active notifications at this time.</p>
+    {% endif %}
+    <hr />
+
     <img src="{% get_media_prefix %}plot_images/irg_critical_forecast_plot_current_extended.png">
 
     <p>The red shaded region represents conditions when the risk of slides has been elevated in the past. The red region is <i>not</i> just based on river height; it's based on river height, <i>and</i> how quickly the river is rising. In a 5-year period from 2014-2019, the river reached the red shaded region 9 times. Three of those periods included a slide which occurred while the river was in the red shaded region. There may have been a couple more slides during these periods as well; it's difficult to determine the timing of a landslide if no one observed it happen.</p>

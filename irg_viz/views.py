@@ -2,6 +2,18 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 
 
+from .models import Notification
+
+
 def index(request):
     """Home page for the whole project."""
-    return render(request, 'irg_viz/index.html')
+
+    notifications = []
+    if request.user.is_authenticated:
+        notifications = Notification.objects.filter(active=True)
+
+    context = {
+        'notifications': notifications,
+    }
+
+    return render(request, 'irg_viz/index.html', context=context)
