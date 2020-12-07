@@ -3,10 +3,11 @@
 
 {% block page_header %}
   <div class="jumbotron">
-    <h1 class="display-3">Indian River Analysis</h1>
+    <h1 class="display-3">Indian River Monitoring Project</h1>
 
     {% if user.is_authenticated %}
-      <p class="lead">When are we most at risk for landslides? The Indian River stream gauge seems to act as a proxy for primary landslide indicators such as soil moisture content. Basically, when the river is rising at a critical rate within a critical period of time, this is an indication that soil moisture content is rising. This is an experimental project; the data you see here may be outdated or incorrect, and the interpretations of this data may be flawed.
+      <p class="lead">When are we most at risk for landslides? The Indian River stream gauge seems to act as a proxy for primary landslide indicators such as soil moisture content. Basically, when the river is rising at a critical rate within a critical period of time, this is an indication that soil moisture content is rising.</p>
+      <p class="lead">This is an experimental project; the data you see here may be outdated or incorrect, and the interpretations of this data may be flawed.
       </p>
     {% else %}
       <p class="lead">This is an experimental project; you must be logged in
@@ -22,8 +23,8 @@
   {% if user.is_authenticated %}
     <img src="{% get_media_prefix %}plot_images/irg_critical_forecast_plot_current_extended.png">
 
-    <p>The red shaded region represents conditions when the risk of slides has been elevated in the past. The red region is <i>not</i> just based on river height; it is based on river height, <i>and</i> how quickly the river is rising. In a 5-year period from 2014-2019, the river reached the red shaded region 9 times. 3 of those periods resulted in a slide which occurred while the river was in the red shaded region. There may have been a couple slides during these periods as well; it is difficult to place the timing of a landslide if no one observed it happen.</p>
-    <p>The light red region shows the critical readings over the previous 6 hours; this shows how close the river was to being in the critical region over the last 6 hours. The dark red region shows how close the river is to being in the critical region over the next 4.5 hours. It's important to note that if the river rises slowly, the critical shaded region will rise as well. To indicate elevated risk of slides, the river must rise quickly for an extended period.</p>
+    <p>The red shaded region represents conditions when the risk of slides has been elevated in the past. The red region is <i>not</i> just based on river height; it's based on river height, <i>and</i> how quickly the river is rising. In a 5-year period from 2014-2019, the river reached the red shaded region 9 times. Three of those periods included a slide which occurred while the river was in the red shaded region. There may have been a couple more slides during these periods as well; it's difficult to determine the timing of a landslide if no one observed it happen.</p>
+    <p>The light red region shows how high the river would have needed to be considered critical. The darker red region shows how close the river is to being in the critical region over the next 4.5 hours. It's important to note that if the river rises slowly, the critical shaded region will rise as well. To indicate elevated risk of slides, the river must rise quickly for an extended period.</p>
     <p>Data source: <a href="https://waterdata.usgs.gov/ak/nwis/uv?cb_00065=on&format=html&site_no=15087700">https://waterdata.usgs.gov/ak/nwis/uv?cb_00065=on&format=html&site_no=15087700</a></p>
 
     <hr />
