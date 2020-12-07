@@ -3,4 +3,5 @@ Notes - sitka\_irg\_realtime
 
 ### Contents:
 
-- [running_locally.md](running_locally.md)
+- [Running this project locally](running_locally.md)
+- [User permissions](user_permissions.md)

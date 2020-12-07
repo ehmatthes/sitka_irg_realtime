@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, Group
 
 
 class CustomUser(AbstractUser):
@@ -14,5 +14,5 @@ class CustomUser(AbstractUser):
 
     def is_site_admin(self):
         """Check if user is a site administrator."""
-        pass
+        return self.groups.filter(name='Site Admins').exists()
 
