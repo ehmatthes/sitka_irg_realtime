@@ -25,6 +25,8 @@ To pull in fresh data, run the following command:
 $ python refresh_data.py
 ```
 
+Keep in mind this hits the USGS data source. If you are working on a visualization and don't need actual fresh data, please set `USE_FRESH_DATA=False`.
+
 ## Open questions
 
 - Current data is flat and uninteresting. How do I see what the project would look like during a critical or near-critical event?
