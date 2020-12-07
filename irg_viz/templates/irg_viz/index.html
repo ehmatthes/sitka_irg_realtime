@@ -1,5 +1,6 @@
 {% extends "irg_viz/base.html" %}
 {% load static %}
+{% load tz %}
 
 {% block page_header %}
   <div class="jumbotron">
@@ -28,7 +29,7 @@
       {% for notification in notifications %}
         <p>{{ notification.text }}</p>
         <p>Posted by: {{ notification.author }}</p>
-        <p>Notification timestamp: {{ notification.date_added|date:'m/d/Y H:i' }}</p>
+        <p>Notification timestamp: {{ notification.date_added|timezone:'US/Alaska'|date:'m/d/Y H:i e' }}</p>
       {% endfor %}
     {% else %}
       <p>Notifications: There are no active notifications at this time.</p>
