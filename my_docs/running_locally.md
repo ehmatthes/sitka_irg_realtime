@@ -30,7 +30,7 @@ Now you have three users:
 - `sample_su`, with superuser permissions.
 - `sample_admin`, which is a member of `Site Admins`. This user can make notifications.
 
-Log in as any one of these users, and you can see the full home page with the stale data.
+The password for each account is its username, ie `sample_user` has the password `sample_user`. Log in as any one of these users, and you can see the full home page with the stale data.
 
 To pull in fresh data, run the following command:
 
