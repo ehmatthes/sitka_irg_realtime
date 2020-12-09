@@ -1,0 +1,20 @@
+{% extends "irg_viz/base.html" %}
+{% load bootstrap4 %}
+
+{% block page_header %}
+  <h1>All notifications</h1>
+  <p>These are all notifications that have ever been issued.</p>
+{% endblock page_header %}
+
+
+{% block content %}
+
+<hr />
+
+{% for notification in notifications %}
+  <p>{{ notification.text|linebreaks }}</p>
+{% empty %}
+  <p>No notifications have been issued.</p>
+{% endfor %}
+
+{% endblock content %}

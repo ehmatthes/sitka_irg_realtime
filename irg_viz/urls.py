@@ -15,6 +15,7 @@ urlpatterns = [
     path('new_notification/', views.new_notification, name='new_notification'),
     path('edit_notification/<int:notification_id>/', views.edit_notification,
             name='edit_notification'),
+    path('all_notifications/', views.all_notifications, name='all_notifications'),
 ]
 
 # View images locally.

@@ -72,3 +72,19 @@ def edit_notification(request, notification_id):
 
     context = {'form': form, 'notification': notification}
     return render(request, 'irg_viz/edit_notification.html', context)
+
+@login_required
+def all_notifications(request):
+    """See all notifications that have been issued.
+    No pagination for now.
+    """
+
+    # Only members of site_admin group can view inactive notifications.
+    if not request.user.is_site_admin():
+        raise Http404
+
+    notifications = Notification.objects.all().order_by('-date_added')
+
+    context = {'notifications': notifications}
+
+    return render(request, 'irg_viz/all_notifications.html', context)
