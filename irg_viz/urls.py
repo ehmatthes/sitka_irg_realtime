@@ -10,6 +10,9 @@ app_name = 'irg_viz'
 urlpatterns = [
     # Home page
     path('', views.index, name='index'),
+
+    # Make a new notification.
+    path('new_notification/', views.new_notification, name='new_notification'),
 ]
 
 # View images locally.

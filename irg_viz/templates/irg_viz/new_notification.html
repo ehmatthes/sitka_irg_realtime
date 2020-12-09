@@ -1,0 +1,23 @@
+{% extends "irg_viz/base.html" %}
+{% load bootstrap4 %}
+
+{% block page_header %}
+  <h1>New notification</h1>
+  <p>Make a new notification for a specific, current weather event.</p>
+{% endblock page_header %}
+
+{% block content %}
+
+<form action="{% url 'irg_viz:new_notification' %}" method='post' class='form'>
+
+  {% csrf_token %}
+
+  {% bootstrap_form form %}
+
+  {% buttons %}
+    <button name='submit' class='btn btn-primary'>Submit notification</button>
+  {% endbuttons %}
+
+</form>
+
+{% endblock content %}

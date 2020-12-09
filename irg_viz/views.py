@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect, Http404
+from django.urls import reverse
 
 
 from .models import Notification
-
+from .forms import NotificationForm
 
 def index(request):
     """Home page for the whole project."""
@@ -19,3 +21,28 @@ def index(request):
     }
 
     return render(request, 'irg_viz/index.html', context=context)
+
+@login_required
+def new_notification(request):
+    """Create a new notification.
+    """
+
+    # Only members of site_admin group can create notifications.
+    if not request.user.is_site_admin():
+        raise Http404
+
+    if request.method != 'POST':
+        # No data submitted; create a blank form.
+        form = NotificationForm()
+    else:
+        # POST data submitted; process data.
+        form = NotificationForm(request.POST)
+        if form.is_valid():
+            new_notification = form.save(commit=False)
+            new_notification.author = request.user
+            new_notification.save()
+
+            return HttpResponseRedirect(reverse('irg_viz:index'))
+
+    context = {'form': form}
+    return render(request, 'irg_viz/new_notification.html', context)
