@@ -46,3 +46,28 @@ def new_notification(request):
 
     context = {'form': form}
     return render(request, 'irg_viz/new_notification.html', context)
+
+@login_required
+def edit_notification(request, notification_id):
+    """Edit an existing notification."""
+
+    # Only members of site_admin group can create notifications.
+    if not request.user.is_site_admin():
+        raise Http404
+
+    # Any site admin can modify any notification.
+    notification = Notification.objects.get(id=notification_id)
+
+    if request.method != 'POST':
+        # No data submitted; create a filled in form.
+        form = NotificationForm(instance=notification)
+    else:
+        # POST data submitted; process data.
+        form = NotificationForm(instance=notification, data=request.POST)
+        if form.is_valid():
+            modified_notification = form.save()
+
+            return HttpResponseRedirect(reverse('irg_viz:index'))
+
+    context = {'form': form, 'notification': notification}
+    return render(request, 'irg_viz/edit_notification.html', context)

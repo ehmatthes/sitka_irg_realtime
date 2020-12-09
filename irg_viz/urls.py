@@ -11,8 +11,10 @@ urlpatterns = [
     # Home page
     path('', views.index, name='index'),
 
-    # Make a new notification.
+    # Working with notifications (site admins only).
     path('new_notification/', views.new_notification, name='new_notification'),
+    path('edit_notification/<int:notification_id>/', views.edit_notification,
+            name='edit_notification'),
 ]
 
 # View images locally.

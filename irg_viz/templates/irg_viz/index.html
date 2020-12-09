@@ -32,6 +32,9 @@
           <p class="notification-timestamp">{{ notification.date_added|timezone:'US/Alaska'|date:'m/d/Y H:i e' }}</p>
           <p class="notification-text">{{ notification.text }}</p>
           <p class="notification-author">Posted by: {{ notification.author }}</p>
+          {% if user.is_site_admin %}
+            <p class="edit-notification"><a href="{% url 'irg_viz:edit_notification' notification.id %}">Edit notification</a></p>
+          {% endif %}
           <hr />
         {% endfor %}
       </div>

@@ -14,11 +14,17 @@ p.notification-text {
 
 p.notification-author {
     text-align: right;
-    margin-bottom: 1em;
+    margin-bottom: 0em;
 }
 
 p.notification-timestamp {
+    margin-bottom: 0.2em;
+}
+
+p.edit-notification {
+    text-align: right;
     margin-bottom: 0;
+    margin-top: 0;
 }
 
 div.notifications-active {
