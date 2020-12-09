@@ -27,6 +27,17 @@
       <span class="navbar-toggler-icon"></span></button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
 
+      {% if user.is_site_admin %}
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin Tools</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="{% url 'irg_viz:new_notification' %}">Create new notification</a>
+            </div>
+          </li>
+        </ul>
+      {% endif %}
+
       <ul class="navbar-nav ml-auto">
         {% if user.is_authenticated %}
           <li class="nav-item">
