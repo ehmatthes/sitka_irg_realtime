@@ -61,7 +61,6 @@ div.card-body-all-notifications {
 .card.notification {
     margin-bottom: 1.2rem;
     border: 3px solid #fbb;
-    background-color: #eee;
 }
 
 .card-header.notification {
