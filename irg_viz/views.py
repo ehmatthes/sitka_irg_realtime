@@ -14,7 +14,6 @@ def index(request):
     if request.user.is_authenticated:
         notifications = (Notification.objects
                 .filter(active=True)
-                .filter(public=True)
                 .order_by('-date_added'))
 
     context = {

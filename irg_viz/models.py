@@ -17,15 +17,13 @@ class Notification(models.Model):
 
     date_added = models.DateTimeField(auto_now_add=True)
 
-    # Having a public checkbox allows drafting notifications, and then making
-    #   them public.
-    public = models.BooleanField(default=True)
-
     # Most notifications should start out active, and then become permanently
     #   inactive. Notifications should not be reused, unless we recognize the
     #   need for a default set of generic notifications. Most of those, 
     #   however, should probably be incorporated into standard text on the
     #   site.
+    # A notification may be set inactive while drafting it, and consulting with
+    #   others.
     active = models.BooleanField(default=True)
 
 

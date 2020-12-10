@@ -26,7 +26,6 @@
     </div>
     <div class="card-footer all-notifications-card-footer">
       {% if notification.active %}Active{% else %}Inactive{% endif %} |
-      {% if notification.public %}Public{% else %}Not Public{% endif %} |
       <span class="author-all-notifications">Author: {{ notification.author }}</span> |
       <a href="{% url 'irg_viz:edit_notification' notification.id %}">edit</a>
     </div>

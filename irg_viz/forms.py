@@ -11,4 +11,4 @@ class NotificationForm(forms.ModelForm):
 
     class Meta:
         model = Notification
-        fields = ['text', 'public', 'active']
+        fields = ['text', 'active']
