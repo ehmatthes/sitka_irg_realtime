@@ -156,7 +156,7 @@ def plot_critical_forecast_mpl_extended(readings, critical_points=[],
             transform=ax.transAxes, fontsize=8)
 
     # Set chart and axes titles, and other formatting.
-    title = f"Indian River Gauge Readings - {title_date_str}"
+    title = f"Káasda Heen Gauge Readings - {title_date_str}"
     ax.set_title(title, loc='left')
     ax.set_xlabel('', fontsize=16)
     ax.set_ylabel("River height (ft)")
