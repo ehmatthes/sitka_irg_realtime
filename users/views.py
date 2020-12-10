@@ -1,8 +1,14 @@
 from django.shortcuts import render
 
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
+from django.http import HttpResponseRedirect, Http404
+from django.urls import reverse
+
 from .forms import CustomUserCreationForm
+from .models import CustomUser
+
 
 def register(request):
     """Register a new user."""
@@ -22,3 +28,31 @@ def register(request):
     # Display a blank or invalid form.
     context = {'form': form}
     return render(request, 'registration/register.html', context)
+
+@login_required
+def request_password_reset(request):
+    """Request a password reset."""
+
+    # Anyone logged in can request this page, and there's not data to send.
+    return render(request, 'registration/request_password_reset.html')
+
+def send_password_reset(request, user_id):
+    """Send a password reset email."""
+
+    user = CustomUser.objects.get(id=user_id)
+
+    # Make sure requested user matches current user.
+    if user != request.user:
+        return Http404
+
+    print('sent password reset email')
+
+    return HttpResponseRedirect(reverse('users:password_reset_sent'))
+
+@login_required
+def password_reset_sent(request):
+    """Confirmt that a password reset email was sent."""
+
+    return render(request, 'registration/password_reset_sent.html')
+
+
