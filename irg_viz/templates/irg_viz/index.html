@@ -25,23 +25,26 @@
 
     <hr />
     {% if notifications %}
-      <div class="notifications-active">
-        <h2>Notifications:</h2>
-        <hr />
         {% for notification in notifications %}
-          <p class="notification-timestamp">{{ notification.date_added|timezone:'US/Alaska'|date:'m/d/Y H:i e' }}</p>
-          <p class="notification-text">{{ notification.text }}</p>
-          <p class="notification-author">Posted by: {{ notification.author }}</p>
-          {% if user.is_site_admin %}
-            <p class="edit-notification"><a href="{% url 'irg_viz:edit_notification' notification.id %}">Edit notification</a></p>
-          {% endif %}
-          <hr />
+          <div class="card notification">
+            <div class="card-header notification">
+              {{ notification.date_added|timezone:'US/Alaska'|date:'m/d/Y H:i e' }}
+            </div>
+            <div class="card-body notification">
+              {{ notification.text|linebreaks }}
+            </div>
+            {% if user.is_site_admin %}
+              <div class="card-footer">
+              <p class="edit-notification">
+                <a href="{% url 'irg_viz:edit_notification' notification.id %}">Edit notification</a>
+              </p>
+            </div>
+            {% endif %}
+          </div>
+
         {% endfor %}
       </div>
-    {% else %}
-      <p>Notifications: There are no active notifications at this time.</p>
     {% endif %}
-    <hr />
 
     <img src="{% get_media_prefix %}plot_images/irg_critical_forecast_plot_current_extended.png">
 

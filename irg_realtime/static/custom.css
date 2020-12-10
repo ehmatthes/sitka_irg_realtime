@@ -27,11 +27,9 @@ p.edit-notification {
     margin-top: 0;
 }
 
-div.notifications-active {
-    border-radius: 5px;
-    padding: 0.5em;
-    /*background-color: #e9abb4;*/
-    background-color: #fbb;
+
+div.all-notifications-card {
+    margin-bottom: 1.2rem;
 }
 
 div.all-notifications-card-header {
@@ -41,10 +39,6 @@ div.all-notifications-card-header {
 div.all-notifications-card-footer {
     padding: 0.2rem 1rem 0.2rem 0.5rem;
     text-align: right;
-}
-
-div.all-notifications-card {
-    margin-bottom: 1.2rem;
 }
 
 div.all-notifications-card-active {
@@ -59,6 +53,26 @@ div.card-body-all-notifications {
     padding: 0.2rem 1rem 0.2rem 1rem;
 }
 
+
 .all-notifications-text p {
+    margin-bottom: 0.2rem;
+}
+
+.card.notification {
+    margin-bottom: 1.2rem;
+    border: 3px solid #fbb;
+    background-color: #eee;
+}
+
+.card-header.notification {
+    padding: 0.2rem 1rem 0.2rem 0.5rem;
+    background-color: #fbb;
+}
+
+.card-body.notification {
+    padding: 0.2rem 1rem 0.2rem 1rem;
+}
+
+.card-body.notification p {
     margin-bottom: 0.2rem;
 }
