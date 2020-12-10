@@ -33,3 +33,32 @@ div.notifications-active {
     /*background-color: #e9abb4;*/
     background-color: #fbb;
 }
+
+div.all-notifications-card-header {
+    padding: 0.2rem 1rem 0.2rem 0.5rem;
+}
+
+div.all-notifications-card-footer {
+    padding: 0.2rem 1rem 0.2rem 0.5rem;
+    text-align: right;
+}
+
+div.all-notifications-card {
+    margin-bottom: 1.2rem;
+}
+
+div.all-notifications-card-active {
+    border: 3px solid #fbb;
+}
+
+div.all-notifications-active {
+    background-color: #fbb;
+}
+
+div.card-body-all-notifications {
+    padding: 0.2rem 1rem 0.2rem 1rem;
+}
+
+.all-notifications-text p {
+    margin-bottom: 0.2rem;
+}

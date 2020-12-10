@@ -1,5 +1,6 @@
 {% extends "irg_viz/base.html" %}
 {% load bootstrap4 %}
+{% load tz %}
 
 {% block page_header %}
   <h1>All notifications</h1>
@@ -12,7 +13,25 @@
 <hr />
 
 {% for notification in notifications %}
-  <p>{{ notification.text|linebreaks }}</p>
+  {% if notification.active %}
+    <div class="card all-notifications-card all-notifications-card-active">
+    <div class="card-header all-notifications-active all-notifications-card-header">{{ notification.date_added|timezone:'US/Alaska'|date:'m/d/Y H:i e' }}</div>
+  {% else %}
+    <div class="card all-notifications-card">
+    <div class="card-header all-notifications-card-header">{{ notification.date_added|timezone:'US/Alaska'|date:'m/d/Y H:i e' }}</div>
+  {% endif %}
+
+    <div class="card-body card-body-all-notifications">
+      <div class="all-notifications-text">{{ notification.text|linebreaks }}</div>
+    </div>
+    <div class="card-footer all-notifications-card-footer">
+      {% if notification.active %}Active{% else %}Inactive{% endif %} |
+      {% if notification.public %}Public{% else %}Not Public{% endif %} |
+      <span class="author-all-notifications">Author: {{ notification.author }}</span> |
+      <a href="{% url 'irg_viz:edit_notification' notification.id %}">edit</a>
+    </div>
+  </div>
+
 {% empty %}
   <p>No notifications have been issued.</p>
 {% endfor %}
