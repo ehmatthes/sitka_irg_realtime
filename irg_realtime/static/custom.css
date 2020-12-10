@@ -75,3 +75,7 @@ div.card-body-all-notifications {
 .card-body.notification p {
     margin-bottom: 0.2rem;
 }
+
+.card-footer.notification {
+    padding: 0.2rem 1rem 0.2rem 1rem;
+}

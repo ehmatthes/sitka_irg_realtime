@@ -34,7 +34,7 @@
               {{ notification.text|linebreaks }}
             </div>
             {% if user.is_site_admin %}
-              <div class="card-footer">
+              <div class="card-footer notification">
               <p class="edit-notification">
                 <a href="{% url 'irg_viz:edit_notification' notification.id %}">Edit notification</a>
               </p>
