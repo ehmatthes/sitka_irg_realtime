@@ -45,7 +45,36 @@ def send_password_reset(request, user_id):
     if user != request.user:
         return Http404
 
-    print('sent password reset email')
+    print('\n\nsending password reset email')
+
+    from django.contrib.auth.forms import PasswordResetForm
+
+    print('user email:', user.email)
+    form = PasswordResetForm(data={'email': user.email})
+    if form.is_valid():
+        # Build required arts.
+        # From: https://github.com/django/django/blob/master/django/contrib/auth/views.py
+        from django.contrib.auth.tokens import default_token_generator
+        opts = {
+            'use_https': request.is_secure(),
+            'token_generator': default_token_generator,
+            'from_email': None,
+            'email_template_name': 'registration/password_reset_email.html',
+            'subject_template_name': 'registration/password_reset_subject.txt',
+            'request': request,
+            'html_email_template_name': None,
+            'extra_email_context': None,
+        }
+        form.save(**opts)
+
+        print('valid form')
+        from django.views.generic.edit import FormView
+        form_view = FormView()
+        return form_view.form_valid(form)
+        print('wtf')
+    else:
+        print('invalid form')
+        print(form)
 
     return HttpResponseRedirect(reverse('users:password_reset_sent'))
 
