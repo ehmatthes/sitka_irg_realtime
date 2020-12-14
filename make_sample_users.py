@@ -10,7 +10,7 @@ django.setup()
 from django.contrib.auth.models import Group
 from django.db.utils import IntegrityError
 
-from users.models import CustomUser
+from accounts.models import CustomUser
 
 
 # Create a regular user, superuser, and site admin user.
