@@ -7,3 +7,4 @@ Notes - sitka\_irg\_realtime
 - [User permissions](user_permissions.md)
 - [Notifications](notifications.md)
 - [Ḵaasda Héen](kaasda_heen.md)
+- [Account management](account_management.md)
