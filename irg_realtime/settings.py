@@ -73,12 +73,14 @@ ANYMAIL = {
 DEFAULT_FROM_EMAIL = "eric@ehmatthes.com"
 SERVER_EMAIL = "eric@ehmatthes.com"
 
-if os.environ.get('PRODUCTION_ENVIRONMENT') == 'local':
+if os.environ.get('SERVER_ENVIRONMENT') == 'local':
     print("Using local settings.")
     EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
     EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
-elif os.environ.get('PRODUCTION_ENVIRONMENT') == 'live':
+elif os.environ.get('SERVER_ENVIRONMENT') == 'production':
+    print("Using production settings.")
     EMAIL_BACKEND = "anymail.backends.sendgrid.EmailBackend"
+    SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
 else:
     raise Exception('Unknown production environment')
 
