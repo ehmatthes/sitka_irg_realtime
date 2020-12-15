@@ -3,6 +3,8 @@ __pycache__/
 
 *.sqlite3
 
+sent_emails/
+
 notes/
 
 screenshots/

@@ -5,7 +5,7 @@ This document explains how to run the project on your local system.
 
 ## Setting up
 
-Clone the project, make a venv, migrate, and run the project:
+Clone the project, make a venv, and migrate:
 
 ```
 $ git clone https://github.com/ehmatthes/sitka_irg_realtime.git
@@ -14,6 +14,18 @@ $ python3 -m venv rt_env
 $ source rt_env/bin/activate
 $ pip install -r requirements.txt
 $ python manage.py migrate
+```
+
+Now make a file called `.env_local`. Add the following line to this file:
+
+```
+PRODUCTION_ENVIRONMENT='local'
+```
+
+Now export this setting, and you should be able to run the project:
+
+```
+$ export $(cat .env_local)
 $ python manage.py runserver
 ```
 

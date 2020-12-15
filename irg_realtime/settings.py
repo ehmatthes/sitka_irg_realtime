@@ -70,13 +70,19 @@ LOGIN_REDIRECT_URL = 'irg_viz:index'
 ANYMAIL = {
     # Settings here for sendgrid.
 }
-EMAIL_BACKEND = "anymail.backends.sendgrid.EmailBackend"
 DEFAULT_FROM_EMAIL = "eric@ehmatthes.com"
 SERVER_EMAIL = "eric@ehmatthes.com"
 
-# For local testing:
-EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
-EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
+if os.environ.get('PRODUCTION_ENVIRONMENT') == 'local':
+    print("Using local settings.")
+    EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+    EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
+elif os.environ.get('PRODUCTION_ENVIRONMENT') == 'live':
+    EMAIL_BACKEND = "anymail.backends.sendgrid.EmailBackend"
+else:
+    raise Exception('Unknown production environment')
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
