@@ -5,7 +5,7 @@ This document explains how accounts are managed in this project.
 
 ## Overview
 
-Accounts are managed using the `django-allauth` app.
+Accounts are managed using the `django-allauth` app. Emails are sent using the `django-anymail` app.
 
 ## Quick shortcuts:
 
@@ -23,3 +23,8 @@ Default templates are [here](https://github.com/pennersr/django-allauth/tree/mas
 ## Overriding forms
 
 This can be done in settings. See <https://django-allauth.readthedocs.io/en/latest/configuration.html>, and look for `ACCOUNT_FORMS`.
+
+## django-anymail
+
+- [Basic documentation](https://anymail.readthedocs.io/en/stable/)
+- [Source code](https://github.com/anymail/django-anymail)
