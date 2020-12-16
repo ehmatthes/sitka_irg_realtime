@@ -55,6 +55,12 @@ def invite_user(request):
     elif request.method == 'POST':
         form = InvitationForm(data=request.POST)
         if form.is_valid():
+            # Clear messages.
+            for message in messages.get_messages(request):
+                pass
+
+            # Get form data without saving user. Could just pull POST data,
+            #   but this is a familiar workflow.
             invited_user = form.save(commit=False)
             # If user exists, reissue invitation email. If they don't exist,
             #   create user and issue invitation email.
