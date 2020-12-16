@@ -14,6 +14,12 @@
   <p>If the person has never received an invitation, an account will be created for them and an they'll be sent an email informing them how they can log in. If they have received an invitation previously, they will be sent another email telling them how they can log in.</p>
   <p>You should let someone know you're inviting them, and tell them they should look in their various inboxes for the email.</p>
 
+  <hr />
+
+  {% for message in messages %}
+    <div class="alert alert-succcess" role="alert">{{ message }}</div>
+  {% endfor %}
+
   <form method="post" action="{% url 'accounts:invite_user' %}" class="form">
     {% csrf_token %}
 

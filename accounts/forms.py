@@ -30,6 +30,11 @@ class InvitationForm(forms.ModelForm):
     Should also work for reissuing an invitation.
     """
 
+    def __init__(self, *args, **kwargs):
+        """Require email field."""
+        super().__init__(*args, **kwargs)
+        self.fields['email'].required = True
+
     class Meta:
         model = CustomUser
         fields = ('email', )
