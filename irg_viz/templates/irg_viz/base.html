@@ -32,8 +32,12 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin Tools</a>
             <div class="dropdown-menu">
+              <h6 class="dropdown-header">Notifications</h6>
               <a class="dropdown-item" href="{% url 'irg_viz:new_notification' %}">Create new notification</a>
               <a class="dropdown-item" href="{% url 'irg_viz:all_notifications' %}">View all notifications</a>
+              <div class="dropdown-divider"></div>
+              <h6 class="dropdown-header">Invitations</h6>
+              <a class="dropdown-item" href="{% url 'accounts:invite_user' %}">Invite a new user</a>
             </div>
           </li>
         </ul>

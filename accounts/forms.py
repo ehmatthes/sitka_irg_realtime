@@ -23,3 +23,13 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = CustomUser
         fields = ('email', )
+
+
+class InvitationForm(forms.ModelForm):
+    """Form for issuing an invitation to a new user.
+    Should also work for reissuing an invitation.
+    """
+
+    class Meta:
+        model = CustomUser
+        fields = ('email', )

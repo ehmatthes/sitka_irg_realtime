@@ -18,5 +18,8 @@ urlpatterns = [
     #   Redirect these to index.
     # path('signup/', irg_views.index),
     path('signup/', views.signup, name='signup'),
+
+    # Allow site admins to issue invitations to new users.
+    path('invite_user/', views.invite_user, name='invite_user'),
 ]
 

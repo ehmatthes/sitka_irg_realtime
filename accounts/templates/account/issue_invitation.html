@@ -1,0 +1,26 @@
+{% extends "irg_viz/base.html" %}
+
+{% load bootstrap4 %}
+
+{% block page_header %}
+  <h2>Invite a new user</h2>
+{% endblock page_header %}
+
+{% block content %}
+
+  <hr />
+
+  <p>Use this form to issue an invitation to a new user.</p>
+  <p>If the person has never received an invitation, an account will be created for them and an they'll be sent an email informing them how they can log in. If they have received an invitation previously, they will be sent another email telling them how they can log in.</p>
+  <p>You should let someone know you're inviting them, and tell them they should look in their various inboxes for the email.</p>
+
+  <form method="post" action="{% url 'accounts:issue_invitation' %}" class="form">
+    {% csrf_token %}
+
+    {% bootstrap_form form %}
+
+    <button name="submit" class="btn btn-primary">Send invitation</button>
+  </form>
+
+    
+{% endblock content %}
