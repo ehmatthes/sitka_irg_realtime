@@ -52,6 +52,7 @@ def invite_user(request):
 
     if request.method == 'GET':
         form = InvitationForm()
+        processed_form = False
     elif request.method == 'POST':
         form = InvitationForm(data=request.POST)
         if form.is_valid():
@@ -81,10 +82,22 @@ def invite_user(request):
                 new_user.set_unusable_password()
                 new_user.save()
                 print("  Saved new user:", new_user.username, new_user.email)
-                message = f"Created new user with username {new_user.username}."
+
+                message = f"A new account has been created with the username {new_user.username}."
                 messages.add_message(request, messages.INFO, message)
 
+                # Send invitation email.
+                #   DEV: here.
 
 
-    context = {'form': form}
+                message = "An invitation email has been sent."
+                messages.add_message(request, messages.INFO, message)
+
+            processed_form = True
+
+
+
+
+
+    context = {'form': form, 'processed_form': processed_form}
     return render(request, 'account/invite_user.html', context=context)

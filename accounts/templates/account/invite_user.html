@@ -25,8 +25,15 @@
 
     {% bootstrap_form form %}
 
-    <button name="submit" class="btn btn-primary">Send invitation</button>
+    {% if not processed_form %}
+      <button name="submit" class="btn btn-primary">Send invitation</button>
+    {% endif %}
   </form>
+
+  {% if processed_form %}
+    <hr />
+    <a href="{% url 'accounts:invite_user' %}">Invite another user</a>
+  {% endif %}
 
     
 {% endblock content %}
