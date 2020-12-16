@@ -184,7 +184,7 @@ elif os.environ.get('ENVIRON') == 'DEPLOYED':
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = 'media/'
 
-LOGIN_URL = 'users:login'
+LOGIN_URL = '/accounts/login/'
 
 if os.environ.get('ENVIRON') == 'DEPLOYED':
     DATABASES = {
