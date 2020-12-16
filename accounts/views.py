@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from django.contrib.auth import logout
 from django.urls import reverse
 
@@ -33,3 +33,9 @@ def edit_profile(request):
 
     context = {'form': form}
     return render(request, 'account/edit_profile.html', context=context)
+
+def signup(request):
+    """Simple view to override signup from allauth, since this project
+    is invite-only.
+    """
+    raise Http404

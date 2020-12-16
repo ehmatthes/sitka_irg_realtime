@@ -16,6 +16,7 @@ urlpatterns = [
 
     # Override urls from django-allauth that I don't want available.
     #   Redirect these to index.
-    path('signup/', irg_views.index),
+    # path('signup/', irg_views.index),
+    path('signup/', views.signup, name='signup'),
 ]
 
