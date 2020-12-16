@@ -69,7 +69,7 @@ def invite_user(request):
                 user = CustomUser.objects.get(email=invited_user.email)
                 print("Found existing user:", user)
                 # Reissue invitation email to existing user.
-                message = f"{user.username} already has an account, and has been reissued an invitation."
+                message = f"An account with this email already exists. A new invitation email has been sent."
                 messages.add_message(request, messages.INFO, message)
             except CustomUser.DoesNotExist:
                 print("Can not find existing user.")

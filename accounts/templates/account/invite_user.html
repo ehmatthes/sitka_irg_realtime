@@ -17,7 +17,7 @@
   <hr />
 
   {% for message in messages %}
-    <div class="alert alert-succcess" role="alert">{{ message }}</div>
+    <div class="alert alert-success" role="alert">{{ message }}</div>
   {% endfor %}
 
   <form method="post" action="{% url 'accounts:invite_user' %}" class="form">
