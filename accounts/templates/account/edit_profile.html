@@ -1,0 +1,24 @@
+{% extends "irg_viz/base.html" %}
+
+{% load bootstrap4 %}
+
+{% block page_header %}
+  <h2>Edit profile</h2>
+{% endblock page_header %}
+
+{% block content %}
+
+  <hr />
+
+  <p><strong>Username: </strong>{{ user.username }}</p>
+
+  <form method="post" action="{% url 'accounts:edit_profile' %}" class="form">
+    {% csrf_token %}
+
+    {% bootstrap_form form %}
+
+    <button name="submit" class="btn btn-primary">Save changes</button>
+  </form>
+
+    
+{% endblock content %}

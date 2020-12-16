@@ -15,5 +15,8 @@
   <p><strong>Email: </strong>{{ user.email }}</p>
   <p><a href="{% url 'account_change_password' %}">Change password</a></p>
 
+  <hr />
+  <p><a href="{% url 'accounts:edit_profile' %}">edit profile</a>
+
     
 {% endblock content %}
