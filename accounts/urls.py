@@ -21,5 +21,7 @@ urlpatterns = [
 
     # Allow site admins to issue invitations to new users.
     path('invite_user/', views.invite_user, name='invite_user'),
+    # path('invite_set_password/', views.invite_set_password,
+            # name='invite_set_password'),
 ]
 

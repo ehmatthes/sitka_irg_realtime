@@ -13,6 +13,30 @@ from .models import CustomUser
 from .forms import CustomUserChangeForm, ProfileForm, InvitationForm
 
 
+# --- Helper functions ---
+
+def send_invite_email(request, new_user):
+    """Send an invitation email."""
+    # Send invitation email.
+    subject = "Invitation to the Ḵaasda Héen (Indian River) Monitoring Project"
+    email_data = {'user': new_user}
+    text_body = render_to_string('account/email/invite_user_body.txt',
+            email_data).strip()
+    html_body = render_to_string('account/email/invite_user_body.html',
+            email_data)
+
+    email_msg = EmailMultiAlternatives(subject=subject,
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            to=[new_user.email], body=text_body)
+
+    email_msg.attach_alternative(html_body, "text/html")
+    email_msg.send()
+
+    message = "An invitation email has been sent."
+    messages.add_message(request, messages.INFO, message,
+            extra_tags='invite_message')
+
+
 def logout_view(request):
     """Log user out, and redirect to home page."""
     logout(request)
@@ -78,9 +102,12 @@ def invite_user(request):
                 user = CustomUser.objects.get(email=invited_user.email)
                 print("Found existing user:", user)
                 # Reissue invitation email to existing user.
-                message = f"An account with this email already exists. A new invitation email has been sent."
+                message = f"An account with this email already exists."
                 messages.add_message(request, messages.INFO, message,
                         extra_tags='invite_message')
+
+                send_invite_email(request, user)
+                
             except CustomUser.DoesNotExist:
                 print("Can not find existing user.")
                 # Create a new user. Assume this username will be unique for now.
@@ -96,31 +123,9 @@ def invite_user(request):
                 messages.add_message(request, messages.INFO, message,
                         extra_tags='invite_message')
 
-                # Send invitation email.
-                subject = "Invitation to the Ḵaasda Héen (Indian River) Monitoring Project"
-                email_data = {'user': new_user}
-                text_body = render_to_string('account/email/invite_user_body.txt',
-                        email_data).strip()
-                html_body = render_to_string('account/email/invite_user_body.html',
-                        email_data)
-
-                email_msg = EmailMultiAlternatives(subject=subject,
-                        from_email=settings.DEFAULT_FROM_EMAIL,
-                        to=[new_user.email], body=text_body)
-
-                email_msg.attach_alternative(html_body, "text/html")
-                email_msg.send()
-
-
-                message = "An invitation email has been sent."
-                messages.add_message(request, messages.INFO, message,
-                        extra_tags='invite_message')
+                send_invite_email(request, new_user)
 
             processed_form = True
-
-
-
-
 
     context = {'form': form, 'processed_form': processed_form}
     return render(request, 'account/invite_user.html', context=context)
