@@ -4,7 +4,8 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.urls import reverse
-from django.core.mail import send_mail
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
 from django.conf import settings
 
 
@@ -96,15 +97,18 @@ def invite_user(request):
                         extra_tags='invite_message')
 
                 # Send invitation email.
-                #   DEV: here.
-                import os
-                print(os.getcwd())
-                with open('accounts/templates/account/email/initial_invite_message.html') as f:
-                    body = f.read()
                 subject = "Invitation to the Ḵaasda Héen (Indian River) Monitoring Project"
+                email_data = {'user': new_user}
+                text_body = ''
+                html_body = render_to_string('account/email/invite_user_body.html',
+                        email_data)
 
-                send_mail(subject, body, settings.DEFAULT_FROM_EMAIL,
-                        (new_user.email, ), html_message=body)
+                email_msg = EmailMultiAlternatives(subject=subject,
+                        from_email=settings.DEFAULT_FROM_EMAIL,
+                        to=[new_user.email], body=text_body)
+
+                email_msg.attach_alternative(html_body, "text/html")
+                email_msg.send()
 
 
                 message = "An invitation email has been sent."
