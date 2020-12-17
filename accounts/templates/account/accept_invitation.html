@@ -12,7 +12,7 @@
 
   {% for message in messages %}
     {% if 'accept_invitation' in message.extra_tags %}
-      <div class="alert alert-success" role="alert">{{ message }}</div>
+      <div class="alert alert-success" role="alert">{{ message|safe }}</div>
     {% endif %}
   {% endfor %}
 

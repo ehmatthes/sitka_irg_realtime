@@ -166,9 +166,12 @@ def accept_invitation(request):
                 pass
             else:
                 user.set_password(password)
+                user.save()
                 success_msg = f"Your password has been set."
-                success_msg += f" You may now <a href='{settings.LOGIN_URL}'>log in</a>."
-                success_msg += f" Your username is: {user.username}"
+                messages.add_message(request, messages.INFO, success_msg,
+                        extra_tags='accept_invitation')
+                success_msg = f" You may now <a href='{settings.LOGIN_URL}'>log in</a>"
+                success_msg += f" with the username {user.username} and the password you just created."
                 messages.add_message(request, messages.INFO, success_msg,
                         extra_tags='accept_invitation')
                 print("Set your password.")
