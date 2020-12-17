@@ -1,0 +1,31 @@
+{% extends "irg_viz/base.html" %}
+
+{% load bootstrap4 %}
+
+{% block page_header %}
+  <h2>Accept invitation</h2>
+{% endblock page_header %}
+
+{% block content %}
+
+  <p>If you've been sent an invitation, enter your email here and create a password. You'll be directed to a login page once your password has been set.</p>
+
+  {% for message in messages %}
+    {% if 'accept_invitation' in message.extra_tags %}
+      <div class="alert alert-success" role="alert">{{ message }}</div>
+    {% endif %}
+  {% endfor %}
+
+  <hr />
+
+  <form action="{% url 'accounts:accept_invitation' %}" method='post' class='form'>
+    {% csrf_token %}
+
+    {% bootstrap_form_errors form %}
+    {% bootstrap_form form %}
+
+    <button name='submit' class='btn btn-primary'>Set password</button>
+  </form>
+
+    
+{% endblock content %}

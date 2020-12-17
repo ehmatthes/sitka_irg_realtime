@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import CustomUser
+from allauth.account.forms import SetPasswordForm
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -35,3 +36,12 @@ class InvitationForm(forms.ModelForm):
     class Meta:
         model = CustomUser
         fields = ('email', )
+
+
+class AcceptInvitationForm(SetPasswordForm):
+    email = forms.EmailField(required=True)
+
+    field_order = ['email', 'password1', 'password2']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(self, *args, **kwargs)

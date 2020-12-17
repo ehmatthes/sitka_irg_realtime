@@ -10,7 +10,8 @@ from django.conf import settings
 
 
 from .models import CustomUser
-from .forms import CustomUserChangeForm, ProfileForm, InvitationForm
+from .forms import (CustomUserChangeForm, ProfileForm, InvitationForm,
+        AcceptInvitationForm)
 
 
 # --- Helper functions ---
@@ -107,7 +108,7 @@ def invite_user(request):
                         extra_tags='invite_message')
 
                 send_invite_email(request, user)
-                
+
             except CustomUser.DoesNotExist:
                 print("Can not find existing user.")
                 # Create a new user. Assume this username will be unique for now.
@@ -129,3 +130,49 @@ def invite_user(request):
 
     context = {'form': form, 'processed_form': processed_form}
     return render(request, 'account/invite_user.html', context=context)
+
+def accept_invitation(request):
+    """Allow an invited user to set their password.
+    Show a form that asks for email and two passwords.
+    On POST, get user with this email. If they don't have a password set,
+      use what they've provided and give a success message with a link to 
+      login.
+      If a user doesn't exist with this password, give a failure alert.
+    """
+
+    if request.method == 'GET':
+
+        form = AcceptInvitationForm()
+        # print(form)
+
+    elif request.method == 'POST':
+        form = AcceptInvitationForm(data=request.POST)
+        if form.is_valid():
+            print ("Its a valid form.")
+            email = request.POST['email']
+            password = request.POST['password1']
+            try:
+                # If user exists and has no password, set password and add success
+                #   message with link to log in. Include username and password that
+                #   was just set.
+                user = CustomUser.objects.get(email=email)
+                if user.has_usable_password():
+                    # For now, handle this the same as user not existing.
+                    #   Don't want to let people try others' email addresses
+                    #   to find out who has an account.
+                    raise CustomUser.DoesNotExist
+            except CustomUser.DoesNotExist:
+                print('This user does not exist.')
+                pass
+            else:
+                user.set_password(password)
+                success_msg = f"Your password has been set."
+                success_msg += f" You may now <a href='{settings.LOGIN_URL}'>log in</a>."
+                success_msg += f" Your username is: {user.username}"
+                messages.add_message(request, messages.INFO, success_msg,
+                        extra_tags='accept_invitation')
+                print("Set your password.")
+
+    context = {'form': form}
+
+    return render(request, 'account/accept_invitation.html', context)
