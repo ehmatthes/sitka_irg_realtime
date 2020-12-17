@@ -99,7 +99,8 @@ def invite_user(request):
                 # Send invitation email.
                 subject = "Invitation to the Ḵaasda Héen (Indian River) Monitoring Project"
                 email_data = {'user': new_user}
-                text_body = ''
+                text_body = render_to_string('account/email/invite_user_body.txt',
+                        email_data).strip()
                 html_body = render_to_string('account/email/invite_user_body.html',
                         email_data)
 
