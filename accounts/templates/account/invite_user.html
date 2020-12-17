@@ -17,7 +17,9 @@
   <hr />
 
   {% for message in messages %}
-    <div class="alert alert-success" role="alert">{{ message }}</div>
+    {% if 'invite_message' in message.extra_tags %}
+      <div class="alert alert-success" role="alert">{{ message }}</div>
+    {% endif %}
   {% endfor %}
 
   <form method="post" action="{% url 'accounts:invite_user' %}" class="form">

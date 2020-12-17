@@ -4,6 +4,9 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.urls import reverse
+from django.core.mail import send_mail
+from django.conf import settings
+
 
 from .models import CustomUser
 from .forms import CustomUserChangeForm, ProfileForm, InvitationForm
@@ -50,15 +53,19 @@ def invite_user(request):
     if not request.user.is_site_admin():
         raise Http404
 
+    # Clear messages.
+    for message in messages.get_messages(request):
+        message.used = True
+
+    storage = messages.get_messages(request)
+    storage.used = True
+
     if request.method == 'GET':
         form = InvitationForm()
         processed_form = False
     elif request.method == 'POST':
         form = InvitationForm(data=request.POST)
         if form.is_valid():
-            # Clear messages.
-            for message in messages.get_messages(request):
-                pass
 
             # Get form data without saving user. Could just pull POST data,
             #   but this is a familiar workflow.
@@ -71,7 +78,8 @@ def invite_user(request):
                 print("Found existing user:", user)
                 # Reissue invitation email to existing user.
                 message = f"An account with this email already exists. A new invitation email has been sent."
-                messages.add_message(request, messages.INFO, message)
+                messages.add_message(request, messages.INFO, message,
+                        extra_tags='invite_message')
             except CustomUser.DoesNotExist:
                 print("Can not find existing user.")
                 # Create a new user. Assume this username will be unique for now.
@@ -84,14 +92,24 @@ def invite_user(request):
                 print("  Saved new user:", new_user.username, new_user.email)
 
                 message = f"A new account has been created with the username {new_user.username}."
-                messages.add_message(request, messages.INFO, message)
+                messages.add_message(request, messages.INFO, message,
+                        extra_tags='invite_message')
 
                 # Send invitation email.
                 #   DEV: here.
+                import os
+                print(os.getcwd())
+                with open('accounts/templates/account/email/initial_invite_message.html') as f:
+                    body = f.read()
+                subject = "Invitation to the Ḵaasda Héen (Indian River) Monitoring Project"
+
+                send_mail(subject, body, settings.DEFAULT_FROM_EMAIL,
+                        (new_user.email, ), html_message=body)
 
 
                 message = "An invitation email has been sent."
-                messages.add_message(request, messages.INFO, message)
+                messages.add_message(request, messages.INFO, message,
+                        extra_tags='invite_message')
 
             processed_form = True
 
