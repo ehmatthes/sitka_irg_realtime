@@ -163,17 +163,19 @@ def accept_invitation(request):
                     raise CustomUser.DoesNotExist
             except CustomUser.DoesNotExist:
                 print('This user does not exist.')
-                pass
+                fail_msg = "Sorry, this request can not be processed."
+                messages.add_message(request, messages.INFO, fail_msg,
+                        extra_tags='accept_invitation_fail')
             else:
                 user.set_password(password)
                 user.save()
                 success_msg = f"Your password has been set."
                 messages.add_message(request, messages.INFO, success_msg,
-                        extra_tags='accept_invitation')
+                        extra_tags='accept_invitation_success')
                 success_msg = f" You may now <a href='{settings.LOGIN_URL}'>log in</a>"
                 success_msg += f" with the username {user.username} and the password you just created."
                 messages.add_message(request, messages.INFO, success_msg,
-                        extra_tags='accept_invitation')
+                        extra_tags='accept_invitation_success')
                 print("Set your password.")
 
     context = {'form': form}

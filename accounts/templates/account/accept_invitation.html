@@ -11,8 +11,10 @@
   <p>If you've been sent an invitation, enter your email here and create a password. You'll be directed to a login page once your password has been set.</p>
 
   {% for message in messages %}
-    {% if 'accept_invitation' in message.extra_tags %}
+    {% if 'accept_invitation_success' in message.extra_tags %}
       <div class="alert alert-success" role="alert">{{ message|safe }}</div>
+    {% elif 'accept_invitation_fail' in message.extra_tags %}
+      <div class="alert alert-danger" role="alert">{{ message|safe }}</div>
     {% endif %}
   {% endfor %}
 
