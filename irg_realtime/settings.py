@@ -77,10 +77,12 @@ if os.environ.get('SERVER_ENVIRONMENT') == 'local':
     print("Using local settings.")
     EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
     EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
+    BASE_URL = 'http://localhost:8000'
 elif os.environ.get('SERVER_ENVIRONMENT') == 'production':
     print("Using production settings.")
     EMAIL_BACKEND = "anymail.backends.sendgrid.EmailBackend"
     SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
+    BASE_URL = 'http://localhost:8000'
 else:
     raise Exception('Unknown production environment')
 

@@ -20,7 +20,8 @@ def send_invite_email(request, new_user):
     """Send an invitation email."""
     # Send invitation email.
     subject = "Invitation to the Ḵaasda Héen (Indian River) Monitoring Project"
-    email_data = {'user': new_user}
+    invite_link = f"{settings.BASE_URL}/accounts/accept_invitation/"
+    email_data = {'user': new_user, 'invite_link': invite_link}
     text_body = render_to_string('account/email/invite_user_body.txt',
             email_data).strip()
     html_body = render_to_string('account/email/invite_user_body.html',

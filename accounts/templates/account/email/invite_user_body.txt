@@ -4,6 +4,8 @@ This is an informational site only. No warnings will be issued based on this mon
 
 If you would like access to this monitoring project, click the link below. You'll be taken to a page where you can set a password, and then log in. Your username is: {{ user.username }}
 
+Accept invitation: {{ invite_link }}
+
 If you do not want access to this project, you can simply ignore this email.
 
 Thank you.
