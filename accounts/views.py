@@ -61,8 +61,6 @@ def edit_profile(request):
             form.save()
             return HttpResponseRedirect(reverse('accounts:profile'))
 
-    print(form.is_valid())
-
     context = {'form': form}
     return render(request, 'account/edit_profile.html', context=context)
 
@@ -102,7 +100,6 @@ def invite_user(request):
             username = invited_user.email.split('@')[0]
             try:
                 user = CustomUser.objects.get(email=invited_user.email)
-                print("Found existing user:", user)
                 # Reissue invitation email to existing user.
                 message = f"An account with this email already exists."
                 messages.add_message(request, messages.INFO, message,
@@ -111,7 +108,6 @@ def invite_user(request):
                 send_invite_email(request, user)
 
             except CustomUser.DoesNotExist:
-                print("Can not find existing user.")
                 # Create a new user. Assume this username will be unique for now.
                 #   Set a random password, that they'll reset on first login.
                 new_user = CustomUser()
@@ -119,7 +115,6 @@ def invite_user(request):
                 new_user.email = invited_user.email
                 new_user.set_unusable_password()
                 new_user.save()
-                print("  Saved new user:", new_user.username, new_user.email)
 
                 message = f"A new account has been created with the username {new_user.username}."
                 messages.add_message(request, messages.INFO, message,
@@ -142,14 +137,11 @@ def accept_invitation(request):
     """
 
     if request.method == 'GET':
-
         form = AcceptInvitationForm()
-        # print(form)
 
     elif request.method == 'POST':
         form = AcceptInvitationForm(data=request.POST)
         if form.is_valid():
-            print ("Its a valid form.")
             email = request.POST['email']
             password = request.POST['password1']
             try:
@@ -163,7 +155,6 @@ def accept_invitation(request):
                     #   to find out who has an account.
                     raise CustomUser.DoesNotExist
             except CustomUser.DoesNotExist:
-                print('This user does not exist.')
                 fail_msg = "Sorry, this request can not be processed."
                 messages.add_message(request, messages.INFO, fail_msg,
                         extra_tags='accept_invitation_fail')
@@ -177,7 +168,6 @@ def accept_invitation(request):
                 success_msg += f" with the username {user.username} and the password you just created."
                 messages.add_message(request, messages.INFO, success_msg,
                         extra_tags='accept_invitation_success')
-                print("Set your password.")
 
     context = {'form': form}
 
