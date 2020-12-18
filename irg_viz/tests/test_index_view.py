@@ -27,9 +27,32 @@ def test_anonymous_available(rf):
     response_text = response.content.decode()
 
     # Make assertions about what should be on anonymous page.
-    required_texts = [
+    required_strings = [
         "This is an experimental project",
         "you must be logged in",
     ]
-    for text in required_texts:
-        assert text in response_text
+    for s in required_strings:
+        assert s in response_text
+
+    # Make assertions about regular user content that shouldn't be on
+    #   anonymous page.
+    regular_user_strings = [
+        'When are we most at risk for landslides',
+        'The red shaded region represents',
+        'Log out',
+        'Data source',
+    ]
+
+    for s in regular_user_strings:
+        assert s not in response_text
+
+    # Make asserts about admin content that shouldn't be on
+    #   anonymous page.
+    admin_strings = [
+        'Admin Tools',
+        'Create new notification',
+        'Invite a new user',
+    ]
+
+    for s in admin_strings:
+        assert s not in response_text
