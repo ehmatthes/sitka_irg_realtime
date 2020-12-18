@@ -119,3 +119,51 @@ def test_index_plot():
     """Test that the main plot on the index page is correct.
     """
     pass
+
+
+# --- Tests for admin users ---
+
+# Make sure site is available, and admin links are available.
+
+@pytest.mark.django_db
+def test_index_admin_user(rf):
+    """Test that admin users see the content they're supposed to see.
+    - Main text
+    - plot image
+    - text of admin links
+    """
+    build_all_groups()
+    make_sample_users()
+    admin_user = CustomUser.objects.get(username='sample_admin')
+
+    request = rf.get('/')
+    request.user = admin_user
+    response = views.index(request)
+
+    assert response.status_code == 200
+
+    response_text = response.content.decode()
+
+    # Make assertions about content that should be available to an admin
+    #   user. They should be able to see all regular user content.
+    regular_user_strings = [
+        'When are we most at risk for landslides',
+        'The red shaded region represents',
+        'Log out',
+        'Data source',
+        'plot_images/irg_critical_forecast_plot_current_extended.png',
+    ]
+
+    for s in regular_user_strings:
+        assert s in response_text
+
+    # Make asserts about admin content that shouldn't be available to a
+    #   regular user.
+    admin_strings = [
+        'Admin Tools',
+        'Create new notification',
+        'Invite a new user',
+    ]
+
+    for s in admin_strings:
+        assert s in response_text
