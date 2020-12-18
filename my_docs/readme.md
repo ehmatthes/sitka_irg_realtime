@@ -8,3 +8,4 @@ Notes - sitka\_irg\_realtime
 - [Notifications](notifications.md)
 - [Ḵaasda Héen](kaasda_heen.md)
 - [Account management](account_management.md)
+- [Testing](testing.md)
