@@ -55,38 +55,6 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
 ]
 
-# django-allauth settings
-AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
-)
-
-SITE_ID = 1
-ACCOUNT_EMAIL_VERIFICATION = 'none'
-LOGIN_REDIRECT_URL = 'irg_viz:index'
-
-
-
-ANYMAIL = {
-    # Settings here for sendgrid.
-}
-DEFAULT_FROM_EMAIL = "eric@ehmatthes.com"
-SERVER_EMAIL = "eric@ehmatthes.com"
-
-if os.environ.get('SERVER_ENVIRONMENT') == 'local':
-    print("Using local settings.")
-    EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
-    EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
-    BASE_URL = 'http://localhost:8000'
-elif os.environ.get('SERVER_ENVIRONMENT') == 'production':
-    print("Using production settings.")
-    EMAIL_BACKEND = "anymail.backends.sendgrid.EmailBackend"
-    SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
-    BASE_URL = 'http://localhost:8000'
-else:
-    raise Exception('Unknown production environment')
-
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -188,19 +156,56 @@ MEDIA_URL = 'media/'
 
 LOGIN_URL = '/accounts/login/'
 
-if os.environ.get('ENVIRON') == 'DEPLOYED':
+
+# django-allauth settings
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+SITE_ID = 1
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+# Where to go after successful login.
+LOGIN_REDIRECT_URL = 'irg_viz:index'
+
+# django-anymail settings
+ANYMAIL = {
+    # Settings here for sendgrid.
+}
+DEFAULT_FROM_EMAIL = "eric@ehmatthes.com"
+SERVER_EMAIL = "eric@ehmatthes.com"
+
+
+# --- Environment-dependent settings. ---
+
+if os.environ.get('SERVER_ENVIRONMENT') == 'local':
+    print("Using local settings.")
+    EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+    EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
+    BASE_URL = 'http://localhost:8000'
+
+elif os.environ.get('SERVER_ENVIRONMENT') == 'production':
+    print("Using production settings.")
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'my_irg_db',
-            'USER': 'my_irg_db_user',
-            'PASSWORD': 'my_irg_db_wonder',
+            'NAME': os.environ.get('DB_NAME'),
+            'USER': os.environ.get('DB_USER'),
+            'PASSWORD': os.environ.get('DB_PASSWORD'),
             'HOST': 'localhost',
             'PORT': '',
         }
     }
 
-    STATIC_ROOT = '/home/ehmatthes/irg_realtime/static/'
+    STATIC_ROOT = '/home/ehmatthes_admin/khmp_project/static/'
     STATIC_URL = '/static/'
 
-    ALLOWED_HOSTS = ['167.71.116.184']
+    ALLOWED_HOSTS = ['142.93.18.56', 'localhost']
+
+    EMAIL_BACKEND = "anymail.backends.sendgrid.EmailBackend"
+    SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
+    BASE_URL = 'http://localhost:8000'
+
+else:
+    raise Exception('Unknown server environment')
