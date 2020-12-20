@@ -198,7 +198,7 @@ elif os.environ.get('SERVER_ENVIRONMENT') == 'production':
         }
     }
 
-    STATIC_ROOT = '/home/ehmatthes_admin/khmp_project/static/'
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
     STATIC_URL = '/static/'
 
     ALLOWED_HOSTS = ['142.93.18.56', 'localhost']
