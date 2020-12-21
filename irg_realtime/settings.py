@@ -201,7 +201,7 @@ elif os.environ.get('SERVER_ENVIRONMENT') == 'production':
     STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
     STATIC_URL = '/static/'
 
-    ALLOWED_HOSTS = ['142.93.18.56', 'localhost']
+    ALLOWED_HOSTS = ['142.93.18.56', 'localhost', 'khmpsitka.org', 'www.khmpsitka.org']
 
     EMAIL_BACKEND = "anymail.backends.sendgrid.EmailBackend"
     SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
