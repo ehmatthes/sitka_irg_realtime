@@ -160,7 +160,7 @@ def accept_invitation(request):
                     raise CustomUser.DoesNotExist
             except CustomUser.DoesNotExist:
                 fail_msg = "Sorry, this request can not be processed."
-                fail_msg += "\nIf you need help, you can send a message to support@khmpsitka.org."
+                fail_msg += " If you need help, you can send a message to support@khmpsitka.org."
                 messages.add_message(request, messages.INFO, fail_msg,
                         extra_tags='accept_invitation_fail')
             else:
