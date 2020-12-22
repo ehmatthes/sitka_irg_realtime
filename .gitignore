@@ -23,3 +23,5 @@ animation_input_files/
 
 .env*
 
+deployment_resources/
+
