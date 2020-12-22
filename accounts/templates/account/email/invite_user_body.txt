@@ -6,6 +6,6 @@ If you would like access to this monitoring project, click the link below. You'l
 
 Accept invitation: {{ invite_link }}
 
-If you do not want access to this project, you can simply ignore this email.
+If you do not want access to this project, you can simply ignore this email. If you have questions about this project, you can write to support@khmpsitka.org.
 
 Thank you.
