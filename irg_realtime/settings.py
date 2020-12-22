@@ -197,7 +197,7 @@ elif os.environ.get('SERVER_ENVIRONMENT') == 'production':
 
     EMAIL_BACKEND = "anymail.backends.sendgrid.EmailBackend"
     SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
-    BASE_URL = 'http://localhost:8000'
+    BASE_URL = 'https://khmpsitka.org'
 
 else:
     raise Exception('Unknown server environment')
