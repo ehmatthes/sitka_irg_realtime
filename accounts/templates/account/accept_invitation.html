@@ -20,14 +20,15 @@
 
   <hr />
 
-  <form action="{% url 'accounts:accept_invitation' %}" method='post' class='form'>
-    {% csrf_token %}
+  {% if show_form %}
+    <form action="{% url 'accounts:accept_invitation' %}" method='post' class='form'>
+      {% csrf_token %}
 
-    {% bootstrap_form_errors form %}
-    {% bootstrap_form form %}
+      {% bootstrap_form_errors form %}
+      {% bootstrap_form form %}
 
-    <button name='submit' class='btn btn-primary'>Set password</button>
-  </form>
-
+      <button name='submit' class='btn btn-primary'>Set password</button>
+    </form>
+  {% endif %}
     
 {% endblock content %}

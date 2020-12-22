@@ -136,12 +136,16 @@ def accept_invitation(request):
       If a user doesn't exist with this password, give a failure alert.
     """
 
+    show_form = True
     if request.method == 'GET':
         form = AcceptInvitationForm()
 
     elif request.method == 'POST':
         form = AcceptInvitationForm(data=request.POST)
         if form.is_valid():
+            # No reason to show form again.
+            show_form = False
+
             email = request.POST['email']
             password = request.POST['password1']
             try:
@@ -156,6 +160,7 @@ def accept_invitation(request):
                     raise CustomUser.DoesNotExist
             except CustomUser.DoesNotExist:
                 fail_msg = "Sorry, this request can not be processed."
+                fail_msg += "\nIf you need help, you can send a message to support@khmpsitka.org."
                 messages.add_message(request, messages.INFO, fail_msg,
                         extra_tags='accept_invitation_fail')
             else:
@@ -169,6 +174,6 @@ def accept_invitation(request):
                 messages.add_message(request, messages.INFO, success_msg,
                         extra_tags='accept_invitation_success')
 
-    context = {'form': form}
+    context = {'form': form, 'show_form': show_form}
 
     return render(request, 'account/accept_invitation.html', context)
