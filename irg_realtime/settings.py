@@ -202,5 +202,7 @@ elif os.environ.get('SERVER_ENVIRONMENT') == 'production':
     SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
     BASE_URL = 'https://khmpsitka.org'
 
+    SECRET_KEY = os.environ.get('SECRET_KEY')
+
 else:
     raise Exception('Unknown server environment')
