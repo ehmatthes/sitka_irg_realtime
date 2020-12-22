@@ -44,9 +44,11 @@ Now you have three users:
 
 The password for each account is its username, ie `sample_user` has the password `sample_user`. Log in as any one of these users, and you can see the full home page with the stale data.
 
-To pull in fresh data, run the following command:
+Make a place to store data and plot images, and then run pull in fresh data:
 
 ```
+$ mkdir current_data
+$ mkdir -p media/plot_images
 $ python refresh_data.py
 ```
 
