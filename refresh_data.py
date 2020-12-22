@@ -9,7 +9,7 @@ from utils import plot_utils_mpl
 
 # On deployed site, always use fresh data.
 USE_FRESH_DATA = False
-if os.environ.get('ENVIRON') == 'DEPLOYED':
+if os.environ.get('SERVER_ENVIRONMENT') == 'PRODUCTION':
     USE_FRESH_DATA = True
 
 # # Fetch current data, which is xml, and convert to readings.
