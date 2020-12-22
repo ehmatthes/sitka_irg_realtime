@@ -180,7 +180,8 @@ if os.environ.get('SERVER_ENVIRONMENT') == 'local':
 elif os.environ.get('SERVER_ENVIRONMENT') == 'production':
     print("Using production settings.")
 
-    DEBUG = False
+    # Only True until I configure nginx to serve media files.
+    DEBUG = True
 
     DATABASES = {
         'default': {
