@@ -179,6 +179,9 @@ if os.environ.get('SERVER_ENVIRONMENT') == 'local':
 
 elif os.environ.get('SERVER_ENVIRONMENT') == 'production':
     print("Using production settings.")
+
+    DEBUG = False
+
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
