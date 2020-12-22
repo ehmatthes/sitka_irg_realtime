@@ -142,14 +142,6 @@ STATICFILES_DIRS = [
 
 STATIC_URL = '/static/'
 
-# This is where static files will be collected to.
-#  This is the directory that will be overwritten on each collectstatic call.
-if os.environ.get('ENVIRON') == 'LOCAL':
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
-    print(f"STATIC_ROOT: {STATIC_ROOT}")
-elif os.environ.get('ENVIRON') == 'DEPLOYED':
-    STATIC_ROOT = '/srv/irg_realtime/static/'
-
 # My settings.
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = 'media/'
@@ -173,8 +165,8 @@ LOGIN_REDIRECT_URL = 'irg_viz:index'
 ANYMAIL = {
     # Settings here for sendgrid.
 }
-DEFAULT_FROM_EMAIL = "eric@ehmatthes.com"
-SERVER_EMAIL = "eric@ehmatthes.com"
+DEFAULT_FROM_EMAIL = "admin@khmpsitka.org"
+SERVER_EMAIL = "eric@khmpsitka.org"
 
 
 # --- Environment-dependent settings. ---
