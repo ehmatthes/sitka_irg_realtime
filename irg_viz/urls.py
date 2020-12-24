@@ -11,6 +11,9 @@ urlpatterns = [
     # Home page
     path('', views.index, name='index'),
 
+    # About pages
+    path('about/', views.about, name='about'),
+
     # Working with notifications (site admins only).
     path('new_notification/', views.new_notification, name='new_notification'),
     path('edit_notification/<int:notification_id>/', views.edit_notification,

@@ -22,6 +22,12 @@ def index(request):
 
     return render(request, 'irg_viz/index.html', context=context)
 
+def about(request):
+    """About the project."""
+
+    context = {}
+    return render(request, 'irg_viz/about.html', context=context)
+
 @login_required
 def new_notification(request):
     """Create a new notification.

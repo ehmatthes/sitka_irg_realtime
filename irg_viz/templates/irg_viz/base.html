@@ -27,6 +27,12 @@
       <span class="navbar-toggler-icon"></span></button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
 
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'irg_viz:about' %}">About</a>
+        </li>
+      </ul>
+
       {% if user.is_site_admin %}
         <ul class="navbar-nav mr-auto">
           <li class="nav-item dropdown">
