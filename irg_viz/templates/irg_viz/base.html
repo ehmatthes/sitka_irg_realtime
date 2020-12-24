@@ -28,8 +28,11 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
 
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'irg_viz:about' %}">About</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">About</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="{% url 'irg_viz:about' %}">About this project</a>
+          </div>
         </li>
       </ul>
 
