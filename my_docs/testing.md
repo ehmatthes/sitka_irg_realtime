@@ -12,7 +12,7 @@ Testing is done using [pytest-django](). Testing is minimal at the moment, reall
 To run tests:
 
 ```
-$ source irg_env/bin/activate
+$ source rt_env/bin/activate
 $ export $(cat .env_local)
 $ pytest
 ```
