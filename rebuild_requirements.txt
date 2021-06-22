@@ -1,0 +1,13 @@
+Django
+django-allauth
+django-anymail
+django-bootstrap4
+django-extensions
+gunicorn
+matplotlib
+numpy
+Pillow
+pytest
+pytest-django
+requests
+requests-oauthlib

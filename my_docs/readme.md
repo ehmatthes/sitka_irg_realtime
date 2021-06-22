@@ -9,3 +9,4 @@ Notes - sitka\_irg\_realtime
 - [Ḵaasda Héen](kaasda_heen.md)
 - [Account management](account_management.md)
 - [Testing](testing.md)
+- [Updating dependencies](updating_dependencies.md)
