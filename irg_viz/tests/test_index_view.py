@@ -14,12 +14,11 @@ from make_sample_users import make_sample_users
 
 # Make sure site is available, and actual data is unavailable.
 
+@pytest.mark.django_db
 def test_anonymous_available(rf):
     """Test that anonymous users do see an index page.
-    - See appropriate message.
-    Test they don't see sensitive data.
-    - No image.
-    - No admin tools.
+    - Test that anonymous users do see full page.
+    - Test that anonymous users do not see admin tools.
 
     Note: This may fail, because response.content.decode() sometimes
       breaks lines up in unexpected ways.
@@ -35,24 +34,14 @@ def test_anonymous_available(rf):
 
     # Make assertions about what should be on anonymous page.
     required_strings = [
-        "This is an experimental project",
-        "you must be logged in",
-    ]
-    for s in required_strings:
-        assert s in response_text
-
-    # Make assertions about regular user content that shouldn't be on
-    #   anonymous page.
-    regular_user_strings = [
-        'When are we most at risk for landslides',
-        'The red shaded region represents',
-        'Log out',
+        "When are we most at risk for landslides?",
+        "This is an experimental project;",
+        "The red shaded region represents conditions",
         'Data source',
         'plot_images/irg_critical_forecast_plot_current_extended.png',
     ]
-
-    for s in regular_user_strings:
-        assert s not in response_text
+    for s in required_strings:
+        assert s in response_text
 
     # Make asserts about admin content that shouldn't be on
     #   anonymous page.
