@@ -9,12 +9,9 @@ from .forms import NotificationForm
 
 def index(request):
     """Home page for the whole project."""
-
-    notifications = []
-    if request.user.is_authenticated:
-        notifications = (Notification.objects
-                .filter(active=True)
-                .order_by('-date_added'))
+    notifications = (Notification.objects
+            .filter(active=True)
+            .order_by('-date_added'))
 
     context = {
         'notifications': notifications,
