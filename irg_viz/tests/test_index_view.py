@@ -156,3 +156,21 @@ def test_index_admin_user(rf):
 
     for s in admin_strings:
         assert s in response_text
+
+
+@pytest.mark.skip
+@pytest.mark.django_db
+def test_notification_system(rf):
+    """Overall test of the notification system.
+    DEV: This should be broken into multiple tests, but this is a simple
+      comprehensive test for the moment.
+
+    Test that:
+    - Anonymous user sees no notification.
+    - Admin user can make a notification.
+    - Admin user sees notification on home page.
+    - Anonymous user can see notification.
+    - Admin user can delete notification.
+    - Anonymous user no longer sees notification.
+    """
+    pass
