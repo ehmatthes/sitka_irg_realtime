@@ -21,15 +21,19 @@ def index(request):
 
 def about(request):
     """About the project."""
-
     context = {}
     return render(request, 'irg_viz/about.html', context=context)
 
 def hist_examples(request):
     """List of historical examples."""
-
     context = {}
     return render(request, 'irg_viz/hist_examples.html', context=context)
+
+def hist_examples_092019(request):
+    """Historical example page focusing on Medvejie slide, 9/20/19."""
+    context = {}
+    return render(request, 'irg_viz/hist_examples_092019.html',
+            context=context)
 
 @login_required
 def new_notification(request):
