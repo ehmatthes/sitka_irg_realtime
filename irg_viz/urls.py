@@ -13,6 +13,7 @@ urlpatterns = [
 
     # About pages
     path('about/', views.about, name='about'),
+    path('hist_examples/', views.hist_examples, name='hist_examples'),
 
     # Working with notifications (site admins only).
     path('new_notification/', views.new_notification, name='new_notification'),
