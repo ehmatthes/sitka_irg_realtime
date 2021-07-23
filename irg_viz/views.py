@@ -51,6 +51,14 @@ def hist_examples_072620(request):
     return render(request, 'irg_viz/hist_examples_072620.html',
             context=context)
 
+def hist_examples_072020(request):
+    """Historical example page focusing on completely noncritical event,
+    7/20/2020.
+    """
+    context = {}
+    return render(request, 'irg_viz/hist_examples_072020.html',
+            context=context)
+
 @login_required
 def new_notification(request):
     """Create a new notification.

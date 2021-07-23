@@ -22,6 +22,8 @@ urlpatterns = [
             name='hist_examples_091316'),
     path('hist_examples_072620/', views.hist_examples_072620,
             name='hist_examples_072620'),
+    path('hist_examples_072020/', views.hist_examples_072020,
+            name='hist_examples_072020'),
 
     # Working with notifications (site admins only).
     path('new_notification/', views.new_notification, name='new_notification'),
