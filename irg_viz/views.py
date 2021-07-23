@@ -35,6 +35,22 @@ def hist_examples_092019(request):
     return render(request, 'irg_viz/hist_examples_092019.html',
             context=context)
 
+def hist_examples_091316(request):
+    """Historical example page focusing on critical unassociated event,
+    9/13/2016.
+    """
+    context = {}
+    return render(request, 'irg_viz/hist_examples_091316.html',
+            context=context)
+
+def hist_examples_072620(request):
+    """Historical example page focusing on almost-critical event,
+    7/26/2020.
+    """
+    context = {}
+    return render(request, 'irg_viz/hist_examples_072620.html',
+            context=context)
+
 @login_required
 def new_notification(request):
     """Create a new notification.

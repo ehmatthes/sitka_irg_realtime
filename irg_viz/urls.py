@@ -18,6 +18,10 @@ urlpatterns = [
     path('hist_examples/', views.hist_examples, name='hist_examples'),
     path('hist_examples_092019/', views.hist_examples_092019,
             name='hist_examples_092019'),
+    path('hist_examples_091316/', views.hist_examples_091316,
+            name='hist_examples_091316'),
+    path('hist_examples_072620/', views.hist_examples_072620,
+            name='hist_examples_072620'),
 
     # Working with notifications (site admins only).
     path('new_notification/', views.new_notification, name='new_notification'),
