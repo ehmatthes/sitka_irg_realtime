@@ -59,6 +59,14 @@ def hist_examples_072020(request):
     return render(request, 'irg_viz/hist_examples_072020.html',
             context=context)
 
+def hist_examples_091616(request):
+    """Historical example page focusing on unassociated slide
+    9/16/2016.
+    """
+    context = {}
+    return render(request, 'irg_viz/hist_examples_091616.html',
+            context=context)
+
 @login_required
 def new_notification(request):
     """Create a new notification.

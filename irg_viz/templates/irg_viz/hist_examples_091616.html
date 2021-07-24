@@ -1,0 +1,27 @@
+{% extends "irg_viz/base.html" %}
+
+{% load static %}
+{% load bootstrap4 %}
+
+{% block page_header %}
+  <h2>Historical examples: Moderate rain event, 7/20/20</h2>
+{% endblock page_header %}
+
+{% block content %}
+
+  <hr />
+
+  <p>Slides can occur outside of critical periods identified by this analysis. There was a critical period on 9/14/2016, during which there were no known slides:</p>
+  
+  <img src="{% get_media_prefix %}plot_images/hist_examples/ir_plot_2016-09-16.png">
+
+  <p>More rain came on 9/15, but not enough to cause a new critical period to be identified. In the early morning of 9/16, a small slide occurred on Halibut Point Road. Here's the 48-hour analysis around that event:</p>
+
+  <img src="{% get_media_prefix %}plot_images/hist_examples/ir_plot_2016-09-17.png">
+
+  <p>This was a small slide in a developed area along HPR. The timing of the slide is not exact; it was reported by a passing motorist, at a time of day when there was very little traffic.</p>
+
+  <hr />
+
+    
+{% endblock content %}
