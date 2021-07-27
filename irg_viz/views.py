@@ -67,6 +67,12 @@ def hist_examples_091616(request):
     return render(request, 'irg_viz/hist_examples_091616.html',
             context=context)
 
+def critical_factors(request):
+    """Discussion of how critical factors are used in the current analysis.
+    """
+    context = {}
+    return render(request, 'irg_viz/critical_factors.html', context=context)
+
 @login_required
 def new_notification(request):
     """Create a new notification.

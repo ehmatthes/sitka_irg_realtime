@@ -1,0 +1,32 @@
+{% extends "irg_viz/base.html" %}
+
+{% load bootstrap4 %}
+
+{% block page_header %}
+  <h2>Critical factors</h2>
+{% endblock page_header %}
+
+{% block content %}
+
+  <hr />
+
+  <p>The core idea of this project is that elevated risk of landslides is indicated by the river rising at a steep rate, for a long enough time to result in a signficant rise in the river. But rate of rise (steepness in the river gauge graph) and what total rise indicates elevated risk?</p>
+
+  <h3>Choosing critical values</h3>
+
+  <p>If the values chosen for critical factors are too low, then critical periods are identified much more often than slides actually occur. In the scientific discussion, these events are referred to as "false positives". If the values chosen are too high, then critical periods associated with slides are potentially missed, and critical periods are identifed too close to slide events to be of any use. A missed slide event is referred to as a "false negative"</p>
+
+  <p>So far the best critical values for the critical factors seem to be a rate averaging 0.5 feet per hour or more, with a total rise of at least 2.5 feet. Higher values miss critical periods that are associated with slides, and lower values result in a higher number of critical periods that are not associated with slides.</p>
+
+  <h3>Identifying critical points</h3>
+
+  <p>To identify critical points, the analysis looks at each individual reading from the river gauge. The analysis then looks at the previous 5 hours of readings. For each point, it asks if the average rate of rise is at least 0.5 feet per hour, and if the total rise is at least 2.5 feet. If the the answer to both of these questions is yes, the data point is considered critical.</p>
+
+  <h3>Further reading</h3>
+
+  <p>For further discussion of what the critical factors are and how these values were chosen, see the <a href="https://github.com/ehmatthes/sitka_irg_realtime/raw/make_public/my_docs/Landslide%20Warning%20System%20-%20IRStream%20Gauge.pdf">full writeup</a> of the historical analysis.</p>
+
+  <hr />
+
+    
+{% endblock content %}
