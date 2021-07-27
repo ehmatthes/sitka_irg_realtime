@@ -1,0 +1,42 @@
+{% extends "irg_viz/base.html" %}
+
+{% load bootstrap4 %}
+
+{% block page_header %}
+  <h2>Project timeline</h2>
+{% endblock page_header %}
+
+{% block content %}
+
+  <hr />
+
+  <p>A timeline is helpful in understanding how this project has evolved.</p>
+
+  <ul>
+    <li>8/18/2015</li>
+      <p>Heavy rains resulted in several landslides along the Sitka road system. A slide at the south end of Kramer avenue caused three fatalities. This event lead to the formation of the landslide research group, organized through the Sitka Sound Science Center.</p>
+      <p>I was on a run with a friend to Indian River falls during this storm, and we were both noticing a much faster and more significant rise in the river than we had ever seen before. We came out of the woods and learned about the slides that had happened in town. I began watching the river gauge during heavy rain events after this time.</p>
+    <li>11/2015</li>
+      <p>I <a href="https://github.com/ehmatthes/sitka_landslides">started a project</a> that attempted to "identify a weather signature that can be used to predict impending landslides with reasonable accuracy". I didn't get very far, because I was trying to include too many factors in the analysis. I was originally trying to work with rainfall, wind speeds, and river gauge data. I couldn't make meaningful progress in the time I had at that point.</p>
+    <li>9/2019</li>
+      <p>In fall 2019 I was no longer teaching in the classroom, and I had more time to give to this project. I began the project from scratch, focusing on just two critical factors: rate of rise of the river, and height of the river. The initial analysis flagged 9 high-risk periods in a 5-year period, and 3 of those periods were associated with slides. This showed that the analysis was worth pursuing and refining. I also began sharing this work with people in the SSSC landslide research group around this time.</p>
+    <li>1/2020</li>
+      <p>In January I <a href="https://github.com/ehmatthes/sitka_irg_analysis">posted the project publicly</a>. Anyone is welcome to run the analysis for themselves, and I have welcome feedback on the project.</p>
+    <li>2/2020</li>
+      <p>I attended the SSSC Landslide Warning System Planning Workshop. I began talking with people from NOAA at this point, who expressed interest in the project. I also had informal discussions with a number of people at the workshop about what a real-time visualization of landslide risk based on river activity might look like.</p>
+    <li>__/2021</li>
+      <p>River forecasting group presentation</p>
+  </ul>
+
+  Other:
+  <p>initial writeup</p>
+  <p>initial presentation to working group</p>
+  <p>pilot private real-time analysis app, shared with friends and colleagues</p>
+  <p>rerun analysis to update overall stats</p>
+  <p>decision to make this site public</p>
+
+
+  <hr />
+
+    
+{% endblock content %}

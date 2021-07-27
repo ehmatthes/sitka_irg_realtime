@@ -73,6 +73,11 @@ def critical_factors(request):
     context = {}
     return render(request, 'irg_viz/critical_factors.html', context=context)
 
+def project_timeline(request):
+    """Timeline of the project."""
+    context = {}
+    return render(request, 'irg_viz/project_timeline.html', context=context)
+
 @login_required
 def new_notification(request):
     """Create a new notification.
