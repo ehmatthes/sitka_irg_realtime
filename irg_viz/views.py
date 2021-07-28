@@ -78,6 +78,11 @@ def project_timeline(request):
     context = {}
     return render(request, 'irg_viz/project_timeline.html', context=context)
 
+def next_steps(request):
+    """Road map for the project."""
+    context = {}
+    return render(request, 'irg_viz/next_steps.html', context=context)
+
 @login_required
 def new_notification(request):
     """Create a new notification.

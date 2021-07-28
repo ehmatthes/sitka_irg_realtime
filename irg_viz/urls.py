@@ -29,6 +29,7 @@ urlpatterns = [
 
     path('critical_factors/', views.critical_factors, name='critical_factors'),
     path('project_timeline/', views.project_timeline, name='project_timeline'),
+    path('next_steps/', views.next_steps, name='next_steps'),
 
     # Working with notifications (site admins only).
     path('new_notification/', views.new_notification, name='new_notification'),
