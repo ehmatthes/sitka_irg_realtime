@@ -1,0 +1,52 @@
+{% extends "irg_viz/base.html" %}
+
+{% load bootstrap4 %}
+
+{% block page_header %}
+  <h2>Disclaimer</h2>
+{% endblock page_header %}
+
+{% block content %}
+
+  <hr />
+
+  <p>This is an experimental project, and should be used for informational purposes only. This project should not be used as the sole basis for deciding how to respond to heavy rain events that may produce landslides. For those kinds of decisions, consult established sources such as NOAA, NWS, and other professional forecasting services.</p>
+
+  <h3>Limitations of a river-based approach to landslide monitoring</h3>
+
+  <p>As an experimental project, there are a number of known limitations of this analysis. There are also many unknowns about this approach. Here are a number of the known issues with the current state of this project:</p>
+
+  <ul>
+    <li>Small data set</li>
+      <p>This project is based on weather patterns observed over a 6-year period, from 9/2014 through 12/2020. There are thousands of river gauge readings over this period, but there are only a handful of landslide events during that period. It is entirely possible that a new weather event will cause a landslide, without matching the conditions seen in the previous 6 years. This is especially true given the changing climatic patterns we have seen in recent years.</p>
+      <p>Also, it should be noted that determining the exact time a slide occurred can be difficult or impossible. It's relatively straightforward to determine the timing of a slide that causes a power outage, because we can fairly confidently correlate the time of the slide with the time of the outage. A slide that occurs along a road or hillside that is only discovered after the fact can be difficult to pinpoint in time. A clear example of this is the major slide that occurred in the Starrigavan valley in September of 2014. That slide probably occurred a day or more before it was discovered.</p>
+    <li>Limited factors</li>
+      <p>This analysis only uses two factors to assess risk: change in the river height, and rate of change of the river height. This project does not take into account such factors as direct soil moisture readings, temperatures, previous rainfall measurements, forecast rainfall amounts, wind speed, or any other factors.</p>
+    <li>New approach</li>
+      <p>This is a new approach to monitoring for landslide risk. It is unknown how reliable this approach is. I have gotten some feedback on the project from experts in landslide risk and weather forecasting, but this project has had no formal peer review.</p>
+    <li>Does not work under some conditions</li>
+      <p>The current approach, focusing on change in river height, will not work if a heavy rain event begins when the river has stabilized near 24 feet. This analysis only considers an event critical if there is a total rise of at least 2.5 feet, with a sustained rate of rise of at least 0.5 feet per hour. The river floods at just below 27 feet. So this analysis will never consider an event critical when it's impossible for the river to rise an additional 2.5 feet above the current relatively stable level. One of the next steps in this project is to try to base the analysis on discharge rate, rather than river height.</p>
+      <p>There are other situations where the analysis may not work. If the river has risen steadily to a moderate height and then a heavy rain event occurs, this may result in conditions different enough from recent slide events to not fit the current model. Similarly, if other factors have caused an increase in soil instability that is not reflected in river behavior, this model may not be valid.</p>
+      <p>This entire analysis is based on correlating current conditions with historical conditions that were known to be associated with slides. If current conditions differ from historical conditions in unknown ways, this model may no longer be valid.</p>
+      <p>Disturbed areas (areas that have been developed in some way) do not always behave the same as undisturbed areas. In the Sitka area we have seen large slides that originate high on mountainsides, and we have seen much smaller slides on areas like steep slopes below homes. Both kinds of events can significantly impact people's safety. With the small number of slides in the 6-year period forming the basis of this analysis, it's impossible to determine how differently disturbed areas behave compared to undisturbed slopes.</p>
+  </ul>
+
+  <h3>Strengths of a river-based approach</h3>
+
+  <p>There are also a number of strengths of this project, which should be listed as well:</p>
+
+  <ul>
+    <li>This is a relatively simple analysis</li>
+      <p>A traditional landslide monitoring system requires multiple sensors, each of which are taking multiple measurements, and involves multiple measurement sites. This approach requires only one or two types of readings, from one instrument site.</p>
+    <li>River gauges are reliable</li>
+      <p>The Ḵaasda Héen river gauge has been operating reliably for a period of decades, and there are river gauges in use all over the state and all over the country. The gauge is relatively accessible, and much more straightforward to maintain than mountainside moisture sensors.</p>
+    <li>Historical data exists</li>
+      <p>Once the soil moisture sensors in the Sitka area are operating reliably, they will need to collect data through enough landslide events for their readings to be correlated with slide activity. With the river gauge approach to monitoring, that historical data already exists. It's still a small amount of data because slides are a relatively infrequent event, but there's enough data to begin making meaningful correlations.</p>
+    <li>This is likely to be applicable in some other areas as well</li>
+      <p>This approach works as well as it does because the Ḵaasda Héen watershed is big enough to be representative of weather events local to the Sitka area. At the same time, it's small enough to not be impacted by southeast weather events that do not impact Sitka. For example when a heavy storm passes over Sitka the river rises quickly, and then falls soon after the storm passes. Rivers in larger watersheds do not have the same response to localized weather events. There are likly other watersheds similar to Ḵaasda Héen that would benefit from this same kind of analysis.</p>
+  </ul>
+
+  <hr />
+
+    
+{% endblock content %}

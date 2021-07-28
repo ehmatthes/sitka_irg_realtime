@@ -83,6 +83,11 @@ def next_steps(request):
     context = {}
     return render(request, 'irg_viz/next_steps.html', context=context)
 
+def disclaimer(request):
+    """State known limitations of the project."""
+    context = {}
+    return render(request, 'irg_viz/disclaimer.html', context=context)
+
 @login_required
 def new_notification(request):
     """Create a new notification.
