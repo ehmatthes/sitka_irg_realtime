@@ -10,6 +10,7 @@
   <title>Ḵaasda Héen Monitoring Project</title>
 
   {% bootstrap_css %}
+  <link href="{% static 'my-footer.css' %}" rel="stylesheet" type="text/css" media="screen">
   <link href="{% static 'custom.css' %}" rel="stylesheet" type="text/css" media="screen">
   {% bootstrap_javascript jquery='full' %}
 
@@ -81,6 +82,12 @@
       {% block content %}{% endblock content %}
     </div>
   </main>
+
+  <footer class="footer">
+    <div class="container">
+      <span class="text-muted">My footer content.</span>
+    </div>
+  </footer>
 
 </body>
 
