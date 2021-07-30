@@ -36,10 +36,10 @@
             <a class="dropdown-item" href="{% url 'irg_viz:hist_examples' %}">Historical examples</a>
             <a class="dropdown-item" href="{% url 'irg_viz:critical_factors' %}">Critical factors</a>
             <a class="dropdown-item" href="{% url 'irg_viz:project_timeline' %}">Project timeline</a>
-            <hr class="dropdown-divider">
             <a class="dropdown-item" href="{% url 'irg_viz:next_steps' %}">Next steps</a>
             <hr class="dropdown-divider">
             <a class="dropdown-item" href="{% url 'irg_viz:disclaimer' %}">Disclaimer</a>
+            <a class="dropdown-item" href="{% url 'irg_viz:contact' %}">Contact information</a>
           </div>
         </li>
       </ul>
@@ -85,7 +85,9 @@
 
   <footer class="footer">
     <div class="container">
-      <span class="text-muted">My footer content.</span>
+      <span><a href="{% url 'irg_viz:about' %}">About</a></span>
+      <span><a href="{% url 'irg_viz:disclaimer' %}">Disclaimer</a></span>
+      <span><a href="{% url 'irg_viz:contact' %}">Contact</a></span>
     </div>
   </footer>
 

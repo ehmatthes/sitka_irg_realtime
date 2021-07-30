@@ -32,6 +32,8 @@ urlpatterns = [
     path('next_steps/', views.next_steps, name='next_steps'),
     path('disclaimer/', views.disclaimer, name='disclaimer'),
 
+    path('contact/', views.contact, name='contact'),
+
     # Working with notifications (site admins only).
     path('new_notification/', views.new_notification, name='new_notification'),
     path('edit_notification/<int:notification_id>/', views.edit_notification,

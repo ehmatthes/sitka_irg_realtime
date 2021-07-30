@@ -88,6 +88,11 @@ def disclaimer(request):
     context = {}
     return render(request, 'irg_viz/disclaimer.html', context=context)
 
+def contact(request):
+    """Simple contact page."""
+    context = {}
+    return render(request, 'irg_viz/contact.html', context=context)
+
 @login_required
 def new_notification(request):
     """Create a new notification.
