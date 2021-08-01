@@ -73,6 +73,11 @@ def critical_factors(request):
     context = {}
     return render(request, 'irg_viz/critical_factors.html', context=context)
 
+def interpreting_graph(request):
+    """Further explanation about how to interpret the graph."""
+    context = {}
+    return render(request, 'irg_viz/interpreting_graph.html', context=context)
+
 def project_timeline(request):
     """Timeline of the project."""
     context = {}

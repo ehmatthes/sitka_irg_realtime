@@ -28,6 +28,8 @@ urlpatterns = [
             name='hist_examples_091616'),
 
     path('critical_factors/', views.critical_factors, name='critical_factors'),
+    path('interpreting_graph/', views.interpreting_graph,
+            name='interpreting_graph'),
     path('project_timeline/', views.project_timeline, name='project_timeline'),
     path('next_steps/', views.next_steps, name='next_steps'),
     path('disclaimer/', views.disclaimer, name='disclaimer'),
