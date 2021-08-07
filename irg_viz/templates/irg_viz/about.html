@@ -12,29 +12,26 @@
 
   <p>My name is Eric Matthes, and I've lived in Sitka since 2002. I have a background in physics, and I was a math and science teacher for many years. I'm the author of <a href="https://www.amazon.com/Python-Crash-Course-Hands-Project-Based/dp/1593279280/">Python Crash Course</a>, an introduction to the Python programming language. I've been a programmer all my life, with an interest in using data to make informed decisions. I've also been an active member of Sitka Mountain Rescue as long as I've lived here. When landslides began to affect the community, I started talking to many people about the issue - first responders, outdoor enthusiasts, scientists, people who live at the base of mountains, and many others. This project is a result of many of those conversations. For more about how this project has evolved, see the <a href="{% url 'irg_viz:project_timeline' %}">project timeline</a>.
 
-  <p>This is a pilot project to determine whether monitoring river levels in a small watershed can lead to a better understanding of when landslides are likely to occur, and just as importantly when they are unlikely to occur. This project is based on a historical analysis of data from the Ḵaasda Héen (Indian River) stream gauge operated by the USGS. This analysis is ongoing. This work is being done in collaboration with the Sitka Sound Science Center <a href="https://sitkascience.org/research-projects/landslide-research/">Landslide Research</a> project.</p>
+  <p>This is a pilot project to determine whether monitoring river levels in a small watershed can lead to a better understanding of when landslides are likely to occur, and just as importantly when they are unlikely to occur. This project is based on a historical analysis of data from the Ḵaasda Héen (Indian River) stream gauge operated by the USGS. This analysis is ongoing, and is being done in collaboration with the Sitka Sound Science Center <a href="https://sitkascience.org/research-projects/landslide-research/">Landslide Research project</a>.</p>
 
-  <p>The purpose of this site is to help the working group determine how readings from the river gauge correspond to landslide risk in real time, and to determine the most appropriate messaging to accompany this visualization. The long term home for this project is likley to be the NWS, whose job it is to report on current weather events.</p>
+  <p>The purpose of this site is to help the working group determine how readings from the river gauge correspond to landslide risk in real time, and to determine the most appropriate messaging to accompany this visualization. The long term home for this project is likley to be the NWS, which is responsible for reporting on current weather events.</p>
 
   <p>The <a href="https://github.com/ehmatthes/sitka_irg_realtime">source code</a> for this site is in a GitHub repository, and you are welcome to <a href="https://github.com/ehmatthes/sitka_irg_realtime/issues/">report bugs</a> that you find. The <a href="https://github.com/ehmatthes/sitka_irg_analysis">historical analysis</a> that forms the basis of this project is in a separate repository. You can also <a href="https://github.com/ehmatthes/sitka_irg_realtime/raw/make_public/my_docs/Landslide%20Warning%20System%20-%20IRStream%20Gauge.pdf">download a report</a> summarizing the original analysis of this approach to monitoring for slides. If you have questions about this project, you can also write to eric@khmpsitka.org.</p>
 
-  <p>You may also want to see what this visualization would have looked like during a variety of conditions; see <a href="">historical examples</a>. Read more about the <a href="">critical factors</a> that determine whether current conditions are considered critical or not. 
-
   <p>There are a number of other pages that tell more about this project as well:</p>
   <ul>
+    <li><a href="{% url 'irg_viz:interpreting_graph' %}">Interpreting the graph</a></li>
+      <p>This sections provides further explanations about how to understand the graph shown on the home page.</p>
     <li><a href="{% url 'irg_viz:hist_examples' %}">Historical examples</a></li>
       <p>These examples show what the visualization would have looked like during a variety of conditions, including significant recent slides.</p>
     <li><a href="{% url 'irg_viz:critical_factors' %}">Critical factors</a></li>
       <p>This section explains what factors determine whether current conditions are considered critical or not.</p>
-    <li><a href="{% url 'irg_viz:interpreting_graph' %}">Interpreting the graph</a></li>
-      <p>This sections provides further explanations about how to understand the graph shown on the home page.</p>
     <li><a href="{% url 'irg_viz:project_timeline' %}">Project timeline</a></li>
-      <p>This section shows how this project has evolved from an idea to its current state.</p>
+      <p>This section shows how the project has evolved from an idea to its current state.</p>
     <li><a href="{% url 'irg_viz:next_steps' %}">Next steps</a></li>
       <p>Describes the next steps that should be taken to move this project forward.</p>
     <li><a href="{% url 'irg_viz:disclaimer' %}">Disclaimer</a></li>
       <p>Describes the limitations of this project, and this approach to monitoring for landslide activity.</p>
   </ul>
-
 
 {% endblock content %}
