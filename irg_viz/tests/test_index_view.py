@@ -34,7 +34,7 @@ def test_anonymous_available(rf):
 
     # Make assertions about what should be on anonymous page.
     required_strings = [
-        "When are we most at risk for landslides?",
+        "When are we most at risk for landslides",
         "This is an experimental project;",
         "The red shaded region represents conditions",
         'Data source',
