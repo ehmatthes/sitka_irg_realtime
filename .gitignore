@@ -13,7 +13,6 @@ screenshots/
 
 
 current_data/
-media/plot_images/
 irg_viz/templates/irg_viz/plot_fragments/
 
 animation_frames/
@@ -25,3 +24,5 @@ animation_input_files/
 
 deployment_resources/
 
+
+media/plot_images/irg_critical_forecast_plot_current_extended.png
